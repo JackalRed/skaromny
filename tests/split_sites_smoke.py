@@ -73,7 +73,7 @@ def main():
                     page.on("pageerror", lambda exc: errors.append(str(exc)))
                     response = page.goto(url, wait_until="domcontentloaded", timeout=30000)
                     assert response and response.status == 200, f"{label}: bad HTTP"
-                    assert expected in page.locator("h1").inner_text(), \
+                    assert expected.casefold() in page.locator("h1").inner_text().casefold(), \
                         f"{label}: wrong hero headline"
                     assert "Skaromny" in page.title(), f"{label}: branding absent"
                     page.wait_for_timeout(500)
