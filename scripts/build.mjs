@@ -17,7 +17,6 @@ mkdirSync(at("dist", "personal", "media"), { recursive: true });
 copyFileSync(at("assets", "selected.webp"), at("dist", "personal", "media", "selected.webp"));
 
 cpSync(at("assets"), at("dist", "hire", "assets"), { recursive: true });
-cpSync(at("decks"), at("dist", "hire", "decks"), { recursive: true });
 
 writeFileSync(at("dist", "personal", "CNAME"), "skaromny.com\n");
 writeFileSync(at("dist", "hire", "CNAME"), "hire.skaromny.com\n");
