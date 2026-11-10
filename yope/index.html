@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fbf8ed">
+<meta name="description" content="Three testable product ideas for Yope, from Eugen Skaromny — a product leader who helped scale a consumer app to 16M monthly active users.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="3 bets for closer friendships | Eugen Skaromny × Yope">
+<meta property="og:description" content="A personal product memo: activation, reactivation, and memory-led retention for a friends-only social app.">
+<meta property="og:url" content="https://hire.skaromny.com/yope/">
+<title>3 bets for Yope — Eugen Skaromny</title>
+<link rel="icon" type="image/svg+xml" href="/apps/hire/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fbf8ed;--ink:#171716;--muted:#6d685e;--line:#201f1c;--acid:#d6f85b;--pink:#ffb4c6;--violet:#c9bafa;--coral:#ff725a;--white:#fffefa;--blue:#a3d7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+::selection{background:var(--acid);color:var(--ink)}a{color:inherit;text-decoration:none}button,a{ -webkit-tap-highlight-color:transparent}a:focus-visible,summary:focus-visible{outline:3px solid #e44d2f;outline-offset:4px}
+.skip{position:absolute;left:12px;top:-80px;z-index:30;padding:12px 18px;background:white;color:black}.skip:focus{top:12px}
+.container{width:min(1230px,calc(100% - 88px));margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:28px 0 22px;border-bottom:1px solid #c9c4b9}
+.brand{display:inline-flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.055em;font-size:22px;white-space:nowrap}.brandmark{width:34px;height:34px;display:grid;place-items:center;background:var(--ink);color:var(--acid);border-radius:9px;font-family:'Space Grotesk';font-size:23px;transform:rotate(-7deg)}
+.nav{display:flex;align-items:center;gap:28px}.nav a{font-size:13px;font-weight:750}.nav a:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
+.nav .nav-pill{border:1.5px solid var(--ink);padding:11px 16px;border-radius:50px;background:var(--acid);box-shadow:3px 3px 0 var(--ink)}
+.eyebrow{font-family:'DM Mono',monospace;text-transform:uppercase;font-size:11px;letter-spacing:.085em;font-weight:500}.hero{padding:80px 0 95px;display:grid;grid-template-columns:1.17fr .83fr;gap:42px;align-items:center;min-height:660px}
+.sidetag{display:inline-block;border:1.5px solid #24211d;border-radius:99px;padding:10px 15px;background:var(--pink);transform:rotate(-3deg);font-weight:750;font-size:12px;margin:0 0 28px}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.075em;line-height:.99}
+h1{font-size:clamp(64px,7.7vw,112px);max-width:850px;margin-bottom:30px;font-weight:700}
+h1 em{display:block;color:var(--ink);font-style:normal;position:relative;width:max-content;max-width:100%;z-index:0}
+h1 em::after{content:'';position:absolute;left:-7px;right:-7px;bottom:1px;height:25%;background:var(--acid);z-index:-1;transform:rotate(-1.5deg)}
+.hero-lede{font-size:clamp(17px,2.1vw,22px);line-height:1.48;max-width:560px;letter-spacing:-.024em;margin:0 0 32px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.btn{display:inline-flex;align-items:center;gap:13px;justify-content:center;border:1.5px solid var(--ink);border-radius:100px;padding:16px 21px;font-weight:800;font-size:13px;transition:transform .16s ease,box-shadow .16s ease}.btn:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.btn-dark{background:var(--ink);color:white}.btn-white{background:var(--white)}.arr{font-size:18px;line-height:10px}
+.hero-art{min-height:460px;position:relative}.art-orbit{position:absolute;inset:8% 4% 12% 7%;border:2px dashed #b2aa96;border-radius:50%;transform:rotate(-19deg)}.art-patch{position:absolute;inset:22% 18% 22% 18%;background:var(--acid);border:2px solid var(--ink);border-radius:44% 55% 45% 56%;transform:rotate(-13deg);box-shadow:11px 13px 0 var(--ink)}
+.art-big{font-family:'Space Grotesk';font-weight:700;font-size:clamp(70px,10vw,135px);letter-spacing:-.10em;position:absolute;inset:27% 0 auto 0;text-align:center;transform:rotate(-13deg);line-height:.93}
+.art-card{position:absolute;background:var(--white);border:2px solid var(--ink);padding:17px 20px;box-shadow:6px 6px 0 var(--ink);font-size:14px;font-weight:800;line-height:1.4;border-radius:9px}
+.art-card.a{left:0;top:2%;transform:rotate(-12deg);background:var(--violet)}.art-card.b{right:-1%;top:19%;transform:rotate(11deg);background:var(--pink)}.art-card.c{left:5%;bottom:3%;transform:rotate(7deg);background:var(--blue)}.art-spark{position:absolute;right:6%;bottom:10%;font-size:76px;transform:rotate(15deg)}
+.ticker{border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--acid);overflow:hidden}
+.ticker-in{display:flex;justify-content:space-between;gap:30px;padding:15px 0;font-weight:750;font-size:12px;letter-spacing:.008em;white-space:nowrap}.ticker-in b{font-size:19px;line-height:10px}
+.section{padding:112px 0}.section-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:46px}
+.kicker{display:inline-flex;gap:8px;align-items:center;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}.kicker::before{content:'';width:9px;height:9px;border-radius:50%;background:var(--coral);border:1px solid var(--ink)}
+.section h2{font-size:clamp(44px,5vw,76px);margin-bottom:0}.section-head>p{font-size:18px;line-height:1.56;margin:0;max-width:540px;color:#3a3834}
+.idea{border:2px solid var(--ink);background:var(--white);margin-bottom:24px;display:grid;grid-template-columns:.97fr 1.03fr;box-shadow:8px 8px 0 var(--ink);overflow:hidden;border-radius:14px}
+.idea-text{padding:42px 40px 38px}.idea-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:33px}
+.number{width:47px;height:47px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;font:700 19px 'Space Grotesk';background:var(--acid)}
+.phase{font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#4b4842}
+.idea h3{font-size:clamp(37px,4.1vw,61px);margin-bottom:18px;max-width:540px}.idea .promise{font-size:18px;line-height:1.52;max-width:530px;margin-bottom:30px;color:#34312d}
+.divline{border-top:1px solid #d9d2c6;margin:27px 0}.idea-label{font:500 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#6e675d;margin-bottom:11px}
+.idea-desc{font-size:14px;line-height:1.55;margin-bottom:0;max-width:550px}
+.metric{font-family:'Space Grotesk';font-size:16px;font-weight:700;line-height:1.35;letter-spacing:-.03em;margin-bottom:8px}.guard{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+.idea-visual{position:relative;border-left:2px solid var(--ink);min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:44px}
+.idea-visual.one{background:var(--violet)}.idea-visual.two{background:var(--pink)}.idea-visual.three{background:var(--blue)}
+.visual-label{align-self:flex-start;font:500 10px 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;background:#fffef9;border:1px solid var(--ink);border-radius:100px;position:absolute;top:24px;left:24px}
+.chat{background:#fffefa;border:2px solid var(--ink);padding:19px;border-radius:17px;box-shadow:6px 6px 0 var(--ink);max-width:400px;width:100%;transform:rotate(-2deg)}
+.chat-title{font-weight:800;font-size:13px;margin-bottom:15px}.chat-message{display:flex;align-items:center;gap:12px;margin-bottom:14px}.avatar{width:42px;height:42px;display:grid;place-items:center;background:var(--acid);border-radius:13px;border:1.5px solid var(--ink);font-size:20px;flex-shrink:0}.bubble{background:#f1edff;border-radius:12px;padding:12px 14px;flex:1;font-size:13px;line-height:1.4}.bubble.green{background:#e9ffb8}
+.chat-foot{background:var(--ink);border-radius:12px;color:#fff;text-align:center;padding:13px;font-size:12px;font-weight:700}
+.sticker{background:var(--acid);border:2px solid var(--ink);padding:10px 15px;box-shadow:4px 4px 0 var(--ink);transform:rotate(7deg);font-weight:800;font-size:12px;position:absolute;bottom:32px;right:19px}
+.camera-flow{display:flex;gap:13px;width:100%;max-width:410px;align-items:stretch}.flow-card{background:white;border:2px solid var(--ink);border-radius:15px;flex:1;min-width:0;padding:17px 13px;text-align:center;box-shadow:5px 5px 0 var(--ink);display:flex;flex-direction:column;align-items:center;gap:10px}.flow-card span{font-size:37px}.flow-card strong{font:700 15px 'Space Grotesk';letter-spacing:-.04em}.flow-card small{font-size:11px;line-height:1.45;color:#48423e}.flow-arrow{align-self:center;font-size:24px;font-weight:800}
+.caption-note{max-width:420px;font-size:12px;line-height:1.45;font-weight:650;text-align:center}
+.timeline{border:2px solid var(--ink);background:#fff;border-radius:18px;padding:24px;box-shadow:6px 6px 0 var(--ink);width:100%;max-width:420px;transform:rotate(2deg)}
+.timeline .top{font:600 11px 'DM Mono';text-transform:uppercase;color:var(--muted);margin-bottom:15px}.tile-row{display:flex;gap:8px;margin:12px 0 18px}.tile{flex:1;aspect-ratio:1;border-radius:10px;border:2px solid var(--ink);display:grid;place-items:center;font-size:43px}.tile:nth-child(1){background:var(--acid)}.tile:nth-child(2){background:var(--pink)}.tile:nth-child(3){background:var(--violet)}.timeline .bottom{font-size:13px;font-weight:700;display:flex;justify-content:space-between;gap:10px}.tiny-cta{background:var(--ink);color:white;padding:9px 11px;border-radius:30px}
+.experiment{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:50px}
+.experiment .step{padding:25px;border-top:2px solid var(--ink);background:#f0ebe2;border-radius:0 0 12px 12px}
+.experiment .step .stepno{font:500 11px 'DM Mono';color:#656056;margin-bottom:18px}
+.experiment .step h4{font-family:'Space Grotesk';letter-spacing:-.045em;font-size:22px;margin:0 0 10px}
+.experiment .step p{font-size:13px;line-height:1.55;margin:0;color:#4c4843}
+.bio{background:var(--ink);color:var(--paper);padding:102px 0}
+.bio-head{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.bio h2{font-size:clamp(52px,6vw,96px);margin:0}.bio p{font-size:18px;line-height:1.6;color:#e0dbd0;max-width:535px}
+.bio .kicker{color:#ccc7b7}.bio .kicker:before{background:var(--acid)}
+.proofs{display:grid;grid-template-columns:repeat(4,1fr);margin:65px 0 38px;border-top:1px solid #706e63;border-bottom:1px solid #706e63}
+.proof{padding:35px 23px 35px 0;border-right:1px solid #706e63}.proof:not(:first-child){padding-left:23px}.proof:last-child{border-right:0}.proof strong{display:block;font:700 clamp(35px,4vw,59px) 'Space Grotesk';letter-spacing:-.075em;color:var(--acid);margin-bottom:10px}.proof span{font-size:12px;line-height:1.5;color:#ded8c9;display:block}
+.bio-rows{display:grid;grid-template-columns:1fr 1fr;gap:20px}.bio-note{padding:25px;border:1px solid #736d61;border-radius:14px}.bio-note .tag{font:500 10px 'DM Mono';color:var(--acid);letter-spacing:.08em;margin-bottom:15px}.bio-note p{font-size:15px;line-height:1.6;margin:0}
+.close{padding:100px 0 80px;background:var(--acid)}.close-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:end}.close h2{font-size:clamp(50px,6vw,92px);margin:0}.close .closing-p{font-size:18px;line-height:1.55}.close .btn{background:var(--ink);color:white}
+.disclaimer{font-size:12px;line-height:1.6;color:#3c3b32;margin-top:22px;max-width:680px}
+.footer{background:var(--ink);color:#efecdf;padding:28px 0}.footer-in{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;font-size:12px}.footer a{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:980px){.hero{grid-template-columns:1fr;gap:10px;min-height:auto;padding:65px 0}.hero-art{min-height:400px;max-width:600px;width:100%;margin:auto}.idea{grid-template-columns:1fr}.idea-visual{border-left:0;border-top:2px solid var(--ink);min-height:360px}.section-head{grid-template-columns:1fr;gap:20px}.bio-head,.close-grid{grid-template-columns:1fr;gap:20px}.bio-rows{grid-template-columns:1fr}.hero h1{font-size:clamp(56px,12vw,95px)}}
+@media(max-width:640px){.container{width:calc(100% - 36px)}.topbar{padding:18px 0;flex-wrap:wrap}.brand{font-size:20px}.nav{gap:16px}.nav a{font-size:11px}.nav a:first-child{display:none}.nav .nav-pill{padding:9px 11px}.hero{padding:58px 0}.hero h1{font-size:clamp(55px,13vw,76px)}.hero-art{min-height:325px}.art-card{padding:12px;font-size:11px}.art-big{font-size:80px}.art-spark{font-size:48px}.art-patch{inset:20%}.section{padding:72px 0}.section h2{font-size:50px}.section-head{margin-bottom:32px}.idea-text{padding:27px 23px}.idea h3{font-size:42px}.idea-visual{padding:65px 15px 45px}.experiment{grid-template-columns:1fr;margin-top:38px}.proofs{grid-template-columns:1fr 1fr;margin-top:44px}.proof{border-right:0;border-bottom:1px solid #706e63;padding:24px 12px!important}.proof:nth-child(odd){border-right:1px solid #706e63}.proof:nth-child(n+3){border-bottom:0}.bio{padding:75px 0}.close{padding:72px 0}.close h2{font-size:59px}.ticker-in{font-size:10px;gap:20px}.hero-lede{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="container">
+<header class="topbar">
+<a class="brand" href="/" aria-label="Eugen Skaromny product portfolio"><span class="brandmark">S.</span> Skaromny</a>
+<nav class="nav" aria-label="Page navigation"><a href="#ideas">3 ideas ↓</a><a href="#about">Why me</a><a class="nav-pill" href="https://www.linkedin.com/in/skaromny/" target="_blank" rel="noopener noreferrer">Let's talk ↗</a></nav>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<div>
+<span class="sidetag">A PRODUCT LOVE LETTER, NOT A COVER LETTER ✳</span>
+<div class="eyebrow" style="margin-bottom:19px">Eugen Skaromny × Yope / Product thinking</div>
+<h1 id="hero-title">Less scroll.<br>More <em>us.</em></h1>
+<p class="hero-lede">What if the next big social network grows not from how long people watch, but from how often friends show up for each other?</p>
+<div class="actions"><a class="btn btn-dark" href="#ideas">Explore 3 product bets <span class="arr">↘</span></a><a class="btn btn-white" href="#about">Meet the PM <span class="arr">↗</span></a></div>
+</div>
+<div class="hero-art" aria-label="Abstract editorial illustration of close-friend interactions, not an app screenshot">
+<div class="art-orbit"></div><div class="art-patch"></div><div class="art-big">you<br>+ me</div>
+<div class="art-card a">no feed.<br>no performance.</div>
+<div class="art-card b">real friends<br>real moments ♡</div>
+<div class="art-card c">tiny interactions<br>big connection.</div><span class="art-spark" aria-hidden="true">✳</span>
+</div>
+</section>
+</div>
+<div class="ticker"><div class="container ticker-in"><span>THREE HYPOTHESES</span><b>✳</b><span>ONE SOCIAL LOOP</span><b>✳</b><span>TEST FIRST, SCALE SECOND</span><b>✳</b><span>PRIVATE BY DESIGN</span></div></div>
+<div class="container">
+<section class="section" id="ideas">
+<div class="section-head">
+<div><div class="kicker">An unsolicited product memo</div><h2>3 small bets.<br>Real impact.</h2></div>
+<p>Yope already nails the ingredients: private circles, one-tap photo sharing, lock-screen presence, streaks and AI recaps. I'd focus on the moments between those features: <strong>reciprocity, group revival and shared memory.</strong> These are hypotheses, not claims about Yope's internal data.</p>
+</div>
+<article class="idea" id="bet-1">
+<div class="idea-text"><div class="idea-top"><span class="number">01</span><span class="phase">Activation / Week 1</span></div>
+<h3>The first <i>“you too?”</i> moment.</h3>
+<p class="promise">Don't optimize for creating a group. Optimize for the first moment a friend <strong>answers with a photo.</strong></p>
+<p class="idea-label">Product bet</p>
+<p class="idea-desc">Make onboarding feel like the beginning of an exchange, not a setup checklist. After the first snap, offer a personal one-tap invitation framed around that exact moment: “show me yours”. Make the recipient's photo reply frictionless.</p>
+<div class="divline"></div><p class="idea-label">Smallest test</p>
+<p class="idea-desc">A/B test a contextual photo-reply invitation after the first share against Yope's current onboarding. Start with newly formed friend groups.</p>
+<div class="divline"></div><p class="idea-label">North-star signal</p>
+<p class="metric">New groups with 2+ unique photo contributors within 48 hours</p>
+<p class="guard">Guardrails: invite accept rate, notification opt-outs, group D7 retention.</p>
+</div>
+<div class="idea-visual one">
+<div class="visual-label">Concept sketch · not a real Yope screen</div>
+<div class="chat">
+<div class="chat-title">♡ the weekend crew <span style="float:right">3 friends</span></div>
+<div class="chat-message"><div class="avatar">👩</div><div class="bubble">📷 this is my rainy-day view</div></div>
+<div class="chat-message"><div class="avatar" style="background:#ffb4c6">🧑</div><div class="bubble green">📷 hah, here's mine ✨</div></div>
+<div class="chat-foot">2 friends shared · a group is alive ✳</div>
+</div>
+<div class="sticker">from invite → interaction ↗</div>
+</div>
+</article>
+<article class="idea" id="bet-2">
+<div class="idea-text"><div class="idea-top"><span class="number" style="background:var(--pink)">02</span><span class="phase">Reactivation / Weeks 2–4</span></div>
+<h3>Pass the camera.</h3>
+<p class="promise">An inactive group doesn't need more push notifications. It needs <strong>a reason to respond.</strong></p>
+<p class="idea-label">Product bet</p>
+<p class="idea-desc">For groups that have gone quiet, test an opt-in, one-tap photo handoff: a friend shares a tiny prompt like “your view right now?” or “what changed since Friday?” The prompt arrives attached to a real friend's moment, not a generic app reminder.</p>
+<div class="divline"></div><p class="idea-label">Smallest test</p>
+<p class="idea-desc">Randomize eligible groups inactive for 7+ days: contextual friend-to-friend handoff vs existing reactivation experience. Limit frequency and make opting out obvious.</p>
+<div class="divline"></div><p class="idea-label">North-star signal</p>
+<p class="metric">Dormant groups returning to 2+ contributors within 72 hours</p>
+<p class="guard">Guardrails: notification fatigue, hidden/muted groups, D14 sustained activity.</p>
+</div>
+<div class="idea-visual two">
+<div class="visual-label">Concept sketch · not a real Yope screen</div>
+<div class="camera-flow">
+<div class="flow-card"><span>📸</span><strong>Drop a moment</strong><small>One real photo from a friend</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-card"><span>🌈</span><strong>Pass it back</strong><small>“Show your view?” one-tap reply</small></div>
+</div>
+<div class="caption-note">Reactivation initiated by a friend, not a feed algorithm.</div>
+<div class="sticker" style="background:var(--violet)">less nagging, more meaning ↗</div>
+</div>
+</article>
+<article class="idea" id="bet-3">
+<div class="idea-text"><div class="idea-top"><span class="number" style="background:var(--blue)">03</span><span class="phase">Retention / Month 2+</span></div>
+<h3>Memories with a sequel.</h3>
+<p class="promise">Yope already has AI recaps. What if the best recap isn't something you watch — <strong>it's a conversation you restart?</strong></p>
+<p class="idea-label">Product bet</p>
+<p class="idea-desc">Give small circles an optional “then & now” moment built from already-shared photos. Let every participant add today's continuation, keeping it private to the existing group. Don't generate fake memories or publish externally.</p>
+<div class="divline"></div><p class="idea-label">Smallest test</p>
+<p class="idea-desc">Offer an interactive recap to eligible, established groups with shared history. Compare against passive recaps or a holdout, measuring new shared contributions rather than recap views.</p>
+<div class="divline"></div><p class="idea-label">North-star signal</p>
+<p class="metric">Recap-triggered new photo conversations per eligible group</p>
+<p class="guard">Guardrails: privacy controls, consent, dismiss rate, incremental D30 retention.</p>
+</div>
+<div class="idea-visual three">
+<div class="visual-label">Concept sketch · not a real Yope screen</div>
+<div class="timeline">
+<div class="top">OUR LITTLE TIME CAPSULE / 2025 → 2026</div>
+<div class="tile-row"><div class="tile">🍟</div><div class="tile">🌧️</div><div class="tile">🎂</div></div>
+<div class="bottom"><span>same people, new chapter</span><span class="tiny-cta">add today ↗</span></div>
+</div>
+<div class="sticker" style="background:var(--acid)">from looking back to showing up ↗</div>
+</div>
+</article>
+<div class="experiment">
+<div class="step"><div class="stepno">STEP 01 / INSTRUMENT</div><h4>See the real loops</h4><p>Map group states, time to first reciprocal share and silent-group cohorts. Segment by circle size and group age before shipping any prompt.</p></div>
+<div class="step"><div class="stepno">STEP 02 / EXPERIMENT</div><h4>Run lightweight tests</h4><p>Start with the smallest opt-in workflow. Randomize by group, not individual, to avoid social network interference between variants.</p></div>
+<div class="step"><div class="stepno">STEP 03 / DECIDE</div><h4>Earn the rollout</h4><p>Scale only if meaningful two-way sharing improves and trust guardrails hold. Track retained groups, not vanity opens or notification volume.</p></div>
+</div>
+</section>
+</div>
+<section class="bio" id="about">
+<div class="container">
+<div class="bio-head">
+<div><div class="kicker">The human behind the ideas</div><h2>Hi, I'm<br>Eugen.</h2></div>
+<div><p>I build products where people, behavior and technology meet. I've led consumer experiences at serious scale, worked on applied AI products, and still spend my own time building things from scratch.</p><p style="color:var(--acid);font-weight:800">I would love to do that at Yope.</p></div>
+</div>
+<div class="proofs" aria-label="Past product experience">
+<div class="proof"><strong>16M</strong><span>monthly active users · consumer app at MegaFon</span></div>
+<div class="proof"><strong>+1M</strong><span>MAU growth · MegaFon product work</span></div>
+<div class="proof"><strong>+15%</strong><span>ARPU impact · MegaFon product portfolio</span></div>
+<div class="proof"><strong>11+</strong><span>years in digital product delivery & leadership</span></div>
+</div>
+<div class="bio-rows">
+<div class="bio-note"><div class="tag">01 / VODAFONE</div><p>Product leadership for AI-augmented work: agents, knowledge, governance and decision support across a complex multinational environment.</p></div>
+<div class="bio-note"><div class="tag">02 / NEEDLE</div><p>Independently built a music-discovery product turning found tracks in social videos into streaming playlists. A personal proof that I still love to ship.</p></div>
+</div>
+</div>
+</section>
+<section class="close">
+<div class="container close-grid">
+<div><div class="kicker">One last thought</div><h2>Let's make<br>close feel<br>closer. ♡</h2></div>
+<div><p class="closing-p">I don't know Yope's internal funnel, current roadmap or experiment history. That's exactly why these are <strong>bets to validate</strong>, not a diagnosis. I'd love to test the assumptions with the team and move quickly from insight to impact.</p>
+<div class="actions"><a class="btn" href="https://www.linkedin.com/in/skaromny/" target="_blank" rel="noopener noreferrer">Talk product with me <span class="arr">↗</span></a><a class="btn btn-white" href="/">Explore my work <span class="arr">↗</span></a></div>
+<p class="disclaimer">Independent candidate concept, not commissioned or endorsed by Yope. Illustrations above are conceptual sketches, not screenshots. Built using publicly described Yope features, including private groups, photo sharing, streaks and AI recaps. <a href="https://www.yope.app/" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Yope product →</a></p>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer"><div class="container footer-in"><span>© 2026 Eugen Skaromny · Built specifically for Yope.</span><span><a href="https://hire.skaromny.com/">Portfolio</a> · <a href="https://www.linkedin.com/in/skaromny/">LinkedIn</a> · <a href="#main">Back to top ↑</a></span></div></footer>
+</body>
+</html>
