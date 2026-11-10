@@ -1,6 +1,9 @@
 name: Design skill audit (non-blocking)
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - design/portfolio-v1
   pull_request:
     paths:
       - index.html
