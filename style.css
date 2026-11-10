@@ -187,7 +187,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
   .needle-copy { min-height: 570px; }
   .needle-demo { min-height: 560px; }
   .problem-result { grid-template-columns: 1fr 1fr; }
-  .thinking-grid { grid-template-columns: 1fr; gap: 55px; }
+  .thinking-grid { grid-template-columns: minmax(0,1fr); gap: 55px; }
   .thinking-intro .section-heading { margin-bottom: 23px; }
   .thinking-list { max-width: 760px; }
   .about-grid { grid-template-columns: 1fr; gap: 60px; }
@@ -243,8 +243,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
   .work-entry { min-height: 0; padding: 25px 0 32px; }
   .work-entry + .work-entry { border-left: 0; border-top: 1px solid var(--line); padding: 25px 0 32px; }
   .work-entry h3 { font-size: 43px; margin: 40px 0 20px; }
-  .thinking-intro .section-heading { font-size: 66px; }
-  .thinking-row { grid-template-columns: 30px 1fr 16px; gap: 10px; }
+  .thinking-intro .section-heading { font-size: clamp(49px, 13.3vw, 66px); }
+  .thinking-row { grid-template-columns: 30px minmax(0,1fr) 16px; gap: 10px; }
   .thinking-row h3 { font-size: 26px; }
   .about-body h2 { font-size: clamp(48px, 10.2vw, 70px); }
   .about-body > p { font-size: 18px; }
