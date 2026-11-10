@@ -49,9 +49,9 @@ Existing assets are kept at the repository root, **not duplicated in git**:
 
 - `assets/needle-demo.mp4`: original, real edited iPhone screen recording.
 - `assets/selected.webp`, `assets/review.webp`, `assets/social.webp`, `assets/spotify.webp`: existing real product screenshots.
-- `decks/*.pdf`: existing tailored product pitch presentations.
+- `decks/*.pdf`: existing tailored presentations kept as source material only; **not published** until rebranded and content-approved.
 
-The build copies those into `dist/hire/assets/` and `dist/hire/decks/`, and copies one real Needle screenshot into `dist/personal/media/`.
+The build copies authentic app media into `dist/hire/assets/` and one screenshot into `dist/personal/media/`. It deliberately **does not publish** the older pitch PDFs because they need surname and content verification.
 
 Never fabricate user metrics, employment dates or endorsements. Exact numeric statements need owner approval before publishing. No generated fake face, fake Needle interface or simulated product video is included.
 
