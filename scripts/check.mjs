@@ -7,7 +7,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pages = [
   "dist/personal/index.html",
   "dist/hire/index.html",
-  "dist/hire/spotify-needle/index.html"
+  "dist/hire/spotify-needle/index.html",
+  "dist/hire/yope/index.html"
 ];
 const forbidden = /\bSkoromny\b/gi;
 for (const pagePath of pages) {
@@ -34,4 +35,5 @@ assert(statSync(resolve(root, "dist/hire/assets/needle-demo.mp4")).size > 100_00
 assert(statSync(resolve(root, "dist/personal/media/selected.webp")).size > 5_000, "Needle product screenshot missing");
 assert(readFileSync(resolve(root, "dist/hire/CNAME"), "utf8").trim() === "hire.skaromny.com");
 assert(readFileSync(resolve(root, "dist/personal/CNAME"), "utf8").trim() === "skaromny.com");
-console.log("PASS independent domains and authentic video");
+assert(readFileSync(resolve(root, "dist/hire/yope/index.html"), "utf8").includes("3 small bets"), "Yope ideas page missing");
+console.log("PASS independent domains, Yope page and authentic video");
