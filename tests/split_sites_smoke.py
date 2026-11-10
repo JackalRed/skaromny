@@ -139,6 +139,8 @@ def main():
                             f"{label}/{width}: sticky header did not react to scroll; did JS load?"
                         )
                     if label == "personal":
+                        page.evaluate("window.scrollTo({top: 0, behavior: 'instant'})")
+                        page.wait_for_timeout(200)
                         # Prove scroll really changes the visual composition, not just
                         # a tiny one-off fade-in or CSS presence.
                         top_progress = page.locator(".hero").evaluate(
