@@ -34,3 +34,33 @@ if (canAnimate) {
     }
   }
 }
+
+
+// Make the navigation persistent while scrolling through the product narrative.
+const spotifyHeader = document.querySelector(".case-header");
+let spotifyFrame = false;
+function updateSpotifyHeader() {
+  spotifyHeader?.classList.toggle("is-scrolled", window.scrollY > 12);
+  spotifyFrame = false;
+}
+window.addEventListener("scroll", () => {
+  if (spotifyFrame) return;
+  spotifyFrame = true;
+  requestAnimationFrame(updateSpotifyHeader);
+}, { passive:true });
+updateSpotifyHeader();
+
+// Cinematic chapter reveals. Without JS or in reduced motion the page is fully visible.
+if (!reduced && "IntersectionObserver" in window) {
+  const animated = [...document.querySelectorAll(".idea-content, .decisions-head, .decisions-list, .opportunity-heading, .hypothesis-metrics, .fit-grid, .ask-layout")];
+  animated.forEach(el => el.setAttribute("data-motion", ""));
+  const observer = new IntersectionObserver((entries, io) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      target.classList.add("in-view");
+      io.unobserve(target);
+    });
+  }, { threshold:.12,rootMargin:"0px 0px -5% 0px" });
+  animated.forEach(el => observer.observe(el));
+  document.documentElement.classList.add("music-motion");
+}

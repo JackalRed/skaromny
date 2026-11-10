@@ -79,9 +79,9 @@ function buildContent() {
   a.wrap("72-person delivery organisation - cross-functional product execution.",10,"F1",MARGIN,CONTENT,14.0);
   a.section("Professional experience");
   a.role("VODAFONE GROUP","2024 - PRESENT","Digital Product Manager / Enterprise AI Product Lead",[
-    "Established a portfolio approach for AI Workforce Augmentation, connecting AI agents, knowledge management, product governance and practical workflow adoption.",
-    "Defined product evaluation methods for answer quality, task completion, adoption and user impact.",
-    "Partner with engineering, architecture and business leaders to prioritise opportunities and move from experimentation toward repeatable delivery."
+    "Built an AI Workforce Augmentation portfolio of knowledge agents; an internal value case estimated approximately 7M in potential benefits, not realised savings.",
+    "Shaped Smart CAPEX decision support for telecom tower and site investments, using BCG reference benchmarking material to compare opportunities.",
+    "Defined evaluation across agent quality, adoption and task completion; aligned engineering, architecture and business stakeholders around delivery."
   ]);
   a.role("MEGAFON","JUN 2021 - NOV 2023","Head of Product / Consumer Mobile App",[
     "Led product strategy for an app serving 16M monthly active users and 2.7M daily active users, with a 72-person delivery organisation.",
