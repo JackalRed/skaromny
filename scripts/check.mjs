@@ -2,6 +2,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pages = [
@@ -48,7 +49,9 @@ assert(readFileSync(resolve(root, "dist/personal/CNAME"), "utf8").trim() === "sk
 assert(readFileSync(resolve(root, "dist/hire/yope/index.html"), "utf8").includes("What makes a group last?"), "Yope group outcome framework missing");
 const cvPath = resolve(root, "dist/hire/assets/Eugen_Skaromny_CV.pdf");
 const cvBytes = readFileSync(cvPath);
-assert(cvBytes.subarray(0, 8).toString("ascii") === "%PDF-1.4", "Missing or invalid CV PDF header");
-assert(cvBytes.length > 4000, "CV PDF too small");
-assert(cvBytes.toString("latin1").includes("/Count 2"), "CV must have two pages");
-console.log("PASS independent domains, Yope page, authentic video and two-page CV");
+assert(cvBytes.subarray(0, 8).toString("ascii") === "%PDF-1.4", "Missing or invalid original CV PDF header");
+assert(cvBytes.length > 60_000, "Original November 10 CV too small");
+assert(cvBytes.toString("latin1").includes("/Count 3"), "Original CV must have its three original pages");
+const sha = createHash("sha256").update(cvBytes).digest("hex");
+assert(sha === "d3fd77b3e1e84bb3e9c55d5084acad308de203b45aae838e2f171e0da23b1896", "CV bytes differ from user's original November 10 upload");
+console.log("PASS independent domains, Yope, authentic video and unchanged original three-page CV");
