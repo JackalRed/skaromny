@@ -226,3 +226,15 @@
  .cover-motto{opacity:1!important;transform:none!important}
  .statement-track span{transform:scaleX(1)!important}
 }
+
+
+/* Gallery motion: movement is tied to each project passing through the viewport. */
+.project.needle .needle-art::before{transform:rotate(calc(var(--project-progress,0) * 13deg)) scale(calc(1 + var(--project-progress,0) * .08))}
+.project.needle .needle-art img{translate:0 calc(var(--project-progress,0) * -18px)}
+.project.smthng .wax-disc{transform:rotate(calc(var(--project-progress,0) * 38deg)) scale(calc(.96 + var(--project-progress,0) * .10))}
+.project.smthng .smthng-seal{translate:0 calc(var(--project-progress,0) * -17px)}
+.project.numeral .numbers{translate:0 calc(var(--project-progress,0) * -14px)}
+@media(prefers-reduced-motion:reduce){
+ .project.needle .needle-art::before,.project.smthng .wax-disc{transform:none!important}
+ .project.needle .needle-art img,.project.smthng .smthng-seal,.project.numeral .numbers{translate:none!important}
+}
