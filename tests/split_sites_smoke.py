@@ -54,6 +54,7 @@ def main():
         ("personal", personal, "Skaromny"),
         ("hire", hire, "Product leadership"),
         ("spotify-needle", hire + "spotify-needle/", "Spotify"),
+        ("yope", hire + "yope/", "Less scroll."),
     ]
     try:
         with sync_playwright() as p:
@@ -76,7 +77,34 @@ def main():
                     assert expected.casefold() in page.locator("h1").inner_text().casefold(), \
                         f"{label}: wrong hero headline"
                     assert "Skaromny" in page.title(), f"{label}: branding absent"
+                    page.evaluate("(label) => document.documentElement.dataset.siteCheck = label", label)
                     page.wait_for_timeout(500)
+                    # A real styled layout is required: plain HTML can pass size
+                    # and script checks while ALL production CSS is unavailable.
+                    style_state = page.evaluate("""() => {
+                        const selectors = {
+                          'personal': '.site-head',
+                          'hire': '.site-header',
+                          'spotify-needle': '.case-header',
+                          'yope': '.topbar'
+                        };
+                        const name = document.documentElement.dataset.siteCheck;
+                        const el = document.querySelector(selectors[name]);
+                        const body = getComputedStyle(document.body);
+                        return {
+                          display: el && getComputedStyle(el).display,
+                          background: body.backgroundColor,
+                          fontFamily: body.fontFamily,
+                          inlineRules: Array.from(document.querySelectorAll('style'))
+                            .map(tag => tag.textContent.length).reduce((a,b) => a+b, 0),
+                          markedInline: !!document.querySelector('style[data-build-inline]')
+                        };
+                    }""")
+                    assert style_state["display"] == "flex", f"{label} at {width}: missing styled header: {style_state}"
+                    assert style_state["inlineRules"] > 3000, f"{label}: no rendered CSS rules: {style_state}"
+                    if label != "yope":
+                        assert style_state["markedInline"], f"{label}: built HTML CSS fallback missing"
+                    assert style_state["background"] != "rgba(0, 0, 0, 0)", f"{label}: unstyled body"
                     assert_no_overflow(page, label, width)
                     assert not errors, f"{label}: JavaScript errors: {errors}"
                     images = page.locator("img")
@@ -121,6 +149,24 @@ def main():
             media_response = hpage.request.get(hire + "assets/needle-demo.mp4", timeout=30000)
             assert media_response.status == 200 and len(media_response.body()) > 100000
             print("PASS real Needle video available via built route", flush=True)
+            # Explicit HTTP checks: a 200 HTML fallback for a CSS/JS URL is a failure.
+            for origin, path, content_type in [
+                (personal, "styles.css", "text/css"),
+                (personal, "script.js", "javascript"),
+                (hire, "styles.css", "text/css"),
+                (hire, "script.js", "javascript"),
+                (hire, "spotify-needle/styles.css", "text/css"),
+                (hire, "spotify-needle/script.js", "javascript"),
+                (hire, "yope/", "text/html"),
+                (hire, "assets/Eugen_Skaromny_CV.pdf", "application/pdf"),
+            ]:
+                response = hpage.request.get(origin + path, timeout=30000)
+                mime = response.headers.get("content-type", "").lower()
+                assert response.status == 200 and content_type in mime, (
+                    f"Bad asset response {origin + path}: status={response.status}, mime={mime}"
+                )
+            print("PASS all stylesheet, script, Yope and PDF HTTP responses", flush=True)
+
             hpage.close()
             browser.close()
     finally:

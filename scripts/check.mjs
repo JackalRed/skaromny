@@ -34,6 +34,16 @@ for (const pagePath of pages) {
 assert(statSync(resolve(root, "dist/hire/assets/needle-demo.mp4")).size > 100_000, "Needle video too small/missing");
 assert(statSync(resolve(root, "dist/personal/media/selected.webp")).size > 5_000, "Needle product screenshot missing");
 assert(readFileSync(resolve(root, "dist/hire/CNAME"), "utf8").trim() === "hire.skaromny.com");
+for (const site of ["personal", "hire"]) {
+  const notFound = resolve(root, "dist", site, "404.html");
+  assert(existsSync(notFound), "Missing 404.html for Cloudflare static routing: " + site);
+  assert(readFileSync(notFound, "utf8").includes("This page doesn't exist."), "Invalid 404 page: " + site);
+}
+for (const pagePath of pages.filter(x => !x.includes("/yope/"))) {
+  const built = readFileSync(resolve(root, pagePath), "utf8");
+  assert(built.includes('<style data-build-inline="true">'), "Built page has no guaranteed inline styles: " + pagePath);
+  assert(built.includes('background:' ) || built.includes('background-'), "Embedded CSS content missing: " + pagePath);
+}
 assert(readFileSync(resolve(root, "dist/personal/CNAME"), "utf8").trim() === "skaromny.com");
 assert(readFileSync(resolve(root, "dist/hire/yope/index.html"), "utf8").includes("3 small bets"), "Yope ideas page missing");
 const cvPath = resolve(root, "dist/hire/assets/Eugen_Skaromny_CV.pdf");

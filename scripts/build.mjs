@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, rmSync, copyFileSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, mkdirSync, rmSync, copyFileSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createCV } from "./create-cv.mjs";
@@ -20,6 +20,52 @@ copyFileSync(at("assets", "selected.webp"), at("dist", "personal", "media", "sel
 cpSync(at("assets"), at("dist", "hire", "assets"), { recursive: true });
 const cv = createCV(at("dist", "hire", "assets", "Eugen_Skaromny_CV.pdf"));
 console.log("Generated selectable two-page CV:", cv.bytes, "bytes");
+
+
+// Deploy robustness: put the final stylesheet inside the page document.
+// Cloudflare can serve /spotify-needle without a trailing slash, and broken
+// stylesheet URLs or stale separate CSS assets must never make the UI unstyled.
+// Keep source styles.css files in the output for browser/dev inspection.
+for (const [site, file, styles, script] of [
+  ["personal", "index.html", "styles.css", "/script.js"],
+  ["hire", "index.html", "styles.css", "/script.js"],
+  ["hire", "spotify-needle/index.html", "spotify-needle/styles.css", "/spotify-needle/script.js"]
+]) {
+  const htmlPath = at("dist", site, file);
+  const cssPath = at("dist", site, styles);
+  const css = readFileSync(cssPath, "utf8");
+  if (css.length < 3000) throw new Error("Unexpectedly short CSS: " + cssPath);
+  let html = readFileSync(htmlPath, "utf8");
+  const cssLink = '<link rel="stylesheet" href="styles.css">';
+  const scriptTag = '<script defer src="script.js"></script>';
+  const alternativeScriptTag = '<script src="script.js" defer></script>';
+  if (!html.includes(cssLink)) throw new Error("Missing stylesheet marker in " + htmlPath);
+  if (!html.includes(scriptTag) && !html.includes(alternativeScriptTag)) {
+    throw new Error("Missing script marker in " + htmlPath);
+  }
+  // All current CSS is authored locally. An HTML-embedded style cannot 404.
+  // Explicit path for JS also survives routes requested without trailing slash.
+  html = html.replace(cssLink, '<style data-build-inline="true">\n' + css.replaceAll("</style", "<\\/style") + '\n</style>');
+  html = html.replace(scriptTag, '<script defer src="' + script + '"></script>');
+  html = html.replace(alternativeScriptTag, '<script defer src="' + script + '"></script>');
+  writeFileSync(htmlPath, html);
+  console.log("Embedded", css.length, "CSS bytes in", site + "/" + file);
+}
+
+
+// These are static multi-page sites, not SPAs. Cloudflare Pages otherwise
+// serves index.html for unknown assets, often returning HTML to CSS requests.
+// A top-level 404.html turns missing assets into real 404s (fail visibly).
+for (const [site, domain] of [
+  ["personal", "https://skaromny.com/"],
+  ["hire", "https://hire.skaromny.com/"]
+]) {
+  const notFound = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — Skaromny</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f6f5ef;color:#17231b;font:16px/1.5 system-ui,sans-serif}main{padding:28px;max-width:540px}h1{font-size:clamp(64px,12vw,110px);letter-spacing:-.08em;margin:0}a{color:#15583b;font-weight:700;text-underline-offset:4px}:focus-visible{outline:3px solid #15583b;outline-offset:4px}</style></head>
+<body><main><h1>404.</h1><p>This page doesn't exist.</p><a href="${domain}">Back to Skaromny ↗</a></main></body></html>`;
+  writeFileSync(at("dist", site, "404.html"), notFound);
+}
 
 writeFileSync(at("dist", "personal", "CNAME"), "skaromny.com\n");
 writeFileSync(at("dist", "hire", "CNAME"), "hire.skaromny.com\n");
