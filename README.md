@@ -18,9 +18,9 @@ The first website concept is in a review branch / PR. It is **not deployed** and
 
 Run from the repo root:
 
-\`\`\`sh
+```sh
 python3 -m http.server 4173
-\`\`\`
+```
 
 Then visit http://localhost:4173. Static hosting (e.g., Cloudflare Pages) can serve this directory directly, without a build command.
 
@@ -28,11 +28,11 @@ Then visit http://localhost:4173. Static hosting (e.g., Cloudflare Pages) can se
 
 The implementation is **informed by** these publicly documented systems, but their CLIs, automatic hook audits, and browser inspectors were **not executed** in this GitHub-only editing session. To run the full comparison locally, open the repo in a supported coding agent and install:
 
-\`\`\`sh
+```sh
 npx impeccable install
 npx skills add Leonxlnx/taste-skill
 npx skills add emilkowalski/skills
-\`\`\`
+```
 
 Use Node 22+ and Chrome/Chromium for Taste's browser inspector. In Codex, re-open the project after installation.
 
