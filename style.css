@@ -3,8 +3,8 @@
    See DESIGN.md before changing tokens or motion. */
 
 :root {
-  --paper: #efede6;
-  --paper-strong: #f7f5ee;
+  --paper: #eaf0e8;
+  --paper-strong: #f5f7f2;
   --ink: #161915;
   --secondary: #51564e;
   --line: rgba(22, 25, 21, .22);
@@ -12,8 +12,8 @@
   --dark-line: rgba(248, 247, 233, .23);
   --light-text: #f5f4e9;
   --acid: #d4f66f;
-  --sage: #dbe0d1;
-  --display: "Space Grotesk", "Arial Narrow", sans-serif;
+  --sage: #cddacb;
+  --display: "Syne", "Arial Narrow", sans-serif;
   --body: "DM Sans", Arial, sans-serif;
   --mono: "IBM Plex Mono", "Courier New", monospace;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -33,9 +33,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .skip-link { position: fixed; z-index: 100; top: 10px; left: 10px; padding: 12px 16px; transform: translateY(-160%); background: var(--acid); color: var(--ink); font-weight: 700; }
 .skip-link:focus { transform: translateY(0); }
 .section { padding-block: clamp(88px, 9vw, 152px); }
-.section-kicker, .section-aside, .feature-meta, .work-entry-header, .entry-foot, .eyebrow, .art-caption, .hero-index, .evidence-label > p, .demo-header, .demo-caption, .demo-message-index, .demo-controls button, .demo-disclaimer, .problem-result > div > span, .about-label > p, .footer-top, .footer-bottom { font-family: var(--mono); font-size: 11px; line-height: 1.55; letter-spacing: .065em; }
-.section-heading { margin: 34px 0 57px; font-family: var(--display); font-size: clamp(58px, 8.4vw, 138px); line-height: .97; letter-spacing: -.085em; font-weight: 600; }
-.section-heading em, .about-body h2 em, .footer > .wrap > p em { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.075em; }
+.section-kicker, .section-aside, .feature-meta, .work-entry-header, .entry-foot, .eyebrow, .art-caption, .hero-index, .evidence-label > p, .demo-header, .demo-caption, .demo-message-index, .demo-controls button, .demo-disclaimer, .problem-result > div > span, .about-label > p, .footer-top, .footer-bottom { font-family: var(--mono); font-size: 12px; line-height: 1.55; letter-spacing: .04em; }
+.section-heading { margin: 34px 0 57px; font-family: var(--display); font-size: clamp(58px, 8.4vw, 138px); line-height: .97; letter-spacing: -.06em; font-weight: 600; }
+.section-heading em, .about-body h2 em, .footer > .wrap > p em { font-family: var(--display); font-style: normal; font-weight: 500; letter-spacing: -.07em; }
 .section-top, .feature-meta, .work-entry-header, .footer-top { display: flex; justify-content: space-between; gap: 22px; }
 .text-link { display: inline-flex; align-items: center; gap: 26px; padding: 10px 0 8px; border-bottom: 1px solid currentColor; font-size: 14px; font-weight: 700; }
 .text-link span, .contact-link span, .bright-link span { transition: transform 160ms var(--ease-out); }
@@ -61,8 +61,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .eyebrow { display: flex; gap: 12px; align-items: center; font-weight: 500; }
 .eyebrow-trail { color: var(--secondary); margin-left: auto; }
 .signal-dot { display: inline-block; width: 8px; height: 8px; background: #68914f; border-radius: 50%; }
-.hero h1 { margin: 50px 0; font-family: var(--display); font-size: clamp(62px, 7.7vw, 132px); font-weight: 600; line-height: .99; letter-spacing: -.084em; text-wrap: balance; }
-.hero h1 em { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; letter-spacing: -.083em; color: #617343; }
+.hero h1 { margin: 50px 0; font-family: var(--display); font-size: clamp(62px, 7.7vw, 132px); font-weight: 600; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+.hero h1 em { font-family: var(--display); font-weight: 500; font-style: normal; letter-spacing: -.07em; color: #456d35; }
 .hero-bottom { max-width: 590px; display: flex; gap: 40px; align-items: flex-end; justify-content: space-between; }
 .hero-bottom p { max-width: 340px; margin: 0; color: #343a33; font-size: clamp(17px, 1.38vw, 21px); line-height: 1.45; letter-spacing: -.025em; }
 .hero-bottom .text-link { flex-shrink: 0; }
@@ -76,8 +76,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .record::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 35deg, transparent 0deg, rgba(245,249,232,.1) 29deg, transparent 70deg, transparent 175deg, rgba(242,247,228,.08) 222deg, transparent 290deg); }
 .record-center { z-index: 1; display: flex; width: 31%; aspect-ratio: 1; border-radius: 50%; background: var(--acid); align-items: center; justify-content: center; flex-direction: column; gap: 2px; transform: rotate(-13deg); }
 .record-center::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--dark); margin-top: 5px; }
-.record-label-main { font-family: var(--display); font-size: clamp(32px, 4.2vw, 64px); font-weight: 700; letter-spacing: -.11em; line-height: 1; }
-.record-label-small { font: 600 clamp(6px, .55vw, 8px)/1.6 var(--mono); letter-spacing: .11em; text-align: center; }
+.record-label-main { font-family: var(--display); font-size: clamp(32px, 4.2vw, 64px); font-weight: 700; letter-spacing: -.07em; line-height: 1; }
+
 .record-arm { z-index: 2; position: absolute; width: 10px; height: 46%; top: 5%; right: 14%; border-radius: 20px; transform: rotate(19deg); transform-origin: top center; background: linear-gradient(90deg, #a0a7a0, #f6f6e9 35%, #868b85); box-shadow: 4px 4px 8px rgba(0,0,0,.11); }
 .record-arm::before { content: ""; position: absolute; top: -7px; left: -15px; width: 40px; height: 40px; border-radius: 50%; background: #262b25; border: 7px solid #858c80; }
 .record-arm span { position: absolute; bottom: -9px; left: -8px; width: 22px; height: 40px; background: #272b27; border-radius: 3px 3px 10px 10px; }
@@ -202,37 +202,37 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
   .contact-link { font-size: 12px; gap: 7px; }
   .hero-grid { padding-top: 29px; }
   .hero-copy { min-height: auto; gap: 50px; padding-bottom: 4px; }
-  .eyebrow { font-size: 9px; }
+  .eyebrow { font-size: 11px; }
   .eyebrow-trail { display: none; }
-  .hero h1 { margin: 0; font-size: clamp(57px, 11.55vw, 78px); line-height: .98; letter-spacing: -.082em; }
+  .hero h1 { margin: 0; font-size: clamp(55px, 11.3vw, 78px); line-height: .98; letter-spacing: -.06em; }
   .hero-bottom { align-items: flex-start; flex-direction: column; gap: 20px; }
   .hero-bottom p { font-size: 18px; line-height: 1.48; max-width: 340px; }
   .hero-art { min-height: 390px; }
   .record { width: min(86vw, 350px); }
   .record-label-main { font-size: 44px; }
-  .record-label-small { font-size: 6px; }
+  
   .record-arm { right: 16%; height: 45%; }
-  .art-caption { left: 25px; right: 25px; font-size: 9px; }
+  .art-caption { left: 25px; right: 25px; font-size: 11px; }
   .art-caption-top { top: 27px; }
   .art-caption-bottom { bottom: 25px; }
-  .hero-index { padding-block: 18px 20px; font-size: 9px; }
+  .hero-index { padding-block: 18px 20px; font-size: 11px; }
   .hero-index span:last-child { display: none; }
   .evidence-grid > div { padding-block: 32px; padding-right: 13px; }
   .evidence-item strong { font-size: 48px; }
   .evidence-item p { font-size: 11px; }
-  .evidence-label p { font-size: 9px; }
+  .evidence-label p { font-size: 11px; }
   .section-top { flex-direction: column; gap: 8px; }
-  .section-aside { font-size: 10px; color: var(--secondary); }
+  .section-aside { font-size: 11px; color: var(--secondary); }
   .section-heading { font-size: clamp(58px, 11.5vw, 74px); margin: 25px 0 35px; }
   .needle-copy { min-height: 0; padding: 26px 23px 34px; }
-  .feature-meta { font-size: 9px; }
+  .feature-meta { font-size: 11px; flex-wrap: wrap; gap: 8px; }
   .needle-wordmark { margin: 52px 0 29px; font-size: clamp(75px, 18vw, 110px); }
   .needle-copy h3 { font-size: 31px; }
   .needle-copy > p { font-size: 14px; }
   .problem-result { grid-template-columns: 1fr; margin-top: 30px; padding-bottom: 12px; }
   .problem-result > div p { max-width: none; }
   .needle-demo { min-height: 520px; }
-  .demo-header { padding-inline: 23px; font-size: 9px; }
+  .demo-header { padding-inline: 23px; font-size: 11px; }
   .demo-content { padding: 28px 23px; min-height: 350px; }
   .demo-glyph { min-height: 145px; }
   .demo-glyph-center { font-size: 94px; }
@@ -250,7 +250,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
   .about-body > p { font-size: 18px; }
   .footer-top { align-items: flex-start; flex-direction: column; }
   .footer > .wrap > p { font-size: clamp(58px, 11vw, 79px); }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 18px; font-size: 10px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 18px; font-size: 11px; }
   .footer-bottom > div { gap: 15px; }
 }
 @media (prefers-reduced-motion: reduce) {
