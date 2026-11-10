@@ -26,15 +26,17 @@ Then visit http://localhost:4173. Static hosting (e.g., Cloudflare Pages) can se
 
 ## Design-skill experiment
 
-The implementation is **informed by** these publicly documented systems, but their CLIs, automatic hook audits, and browser inspectors were **not executed** in this GitHub-only editing session. To run the full comparison locally, open the repo in a supported coding agent and install:
+The implementation is **informed by** these publicly documented systems. GitHub Actions now executes the official **Impeccable `detect` CLI**, **Taste Skill 2.5.1 copy-lint and browser consistency checker**, and an independent Playwright smoke suite. Findings are uploaded as build artifacts; design audits are intentionally non-blocking so unresolved issues stay visible. **Emil's animation skill is agent guidance, not a CLI validator**: its principles were applied manually but the skill was not loaded in a coding-agent session. To reproduce the full agent-guided workflow locally, open the repo in a supported coding agent and install:
 
 ```sh
 npx impeccable install
-npx skills add Leonxlnx/taste-skill
+npx skills add https://github.com/Leonxlnx/taste-skill --skill design-taste-frontend
 npx skills add emilkowalski/skills
 ```
 
 Use Node 22+ and Chrome/Chromium for Taste's browser inspector. In Codex, re-open the project after installation.
+
+See [DESIGN_AUDIT.md](DESIGN_AUDIT.md) for the measured findings and unresolved items.
 
 Suggested ordered experiment:
 1. Read PRODUCT.md. Run Impeccable's init and review DESIGN.md; use critique, audit, and polish.
