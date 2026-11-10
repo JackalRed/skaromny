@@ -31,7 +31,6 @@ jobs:
         run: npm run check
       - name: Validate JavaScript
         run: |
-          node --check scripts/create-cv.mjs
           node --check apps/personal/script.js
           node --check apps/hire/script.js
           node --check apps/hire/spotify-needle/script.js
