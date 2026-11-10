@@ -116,6 +116,9 @@ def main():
                             arg=image.element_handle(),
                             timeout=10000,
                         )
+                    # Capture the settled layout, not the middle of the opening choreography.
+                    if label in ("hire", "spotify-needle", "personal"):
+                        page.wait_for_timeout(1000)
                     page.screenshot(path=str(OUT / f"{label}-{width}.png"), full_page=True)
                     # Sticky nav must remain visible during scrolling; this would
                     # catch a theme that looks good at the top but loses its CTA.
