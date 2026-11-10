@@ -121,14 +121,14 @@
  .real-demo{max-width:650px}
 }
 @media(max-width:600px){
- .case-header{height:68px}.case-brand{font-size:15px}.case-brand small{font-size:10px}.back{font-size:11px}
- .intro-overline{font-size:9px}.intro-overline span:last-child{display:none}
+ .case-header{height:68px}.case-brand{font-size:15px}.case-brand small{font-size:11px}.back{font-size:11px}
+ .intro-overline{font-size:11px}.intro-overline span:last-child{display:none}
  .intro-copy{padding:80px 0 75px}
  .intro h1{font-size:clamp(64px,13.5vw,93px);margin:34px 0 27px;letter-spacing:-.075em}
  .hero-sub{font-size:24px}
  .hero-note{font-size:16px}
  .intro-actions{gap:17px}
- .independent-note{font-size:10px;padding-bottom:12px}
+ .independent-note{font-size:11px;padding-bottom:12px}
  .section h2{font-size:clamp(52px,11.2vw,82px)}
  .why h2{font-size:clamp(72px,13.5vw,98px)}
  .why-text p{font-size:18px}
@@ -145,7 +145,7 @@
  .real-demo{padding:15px}
  .video-wrap{min-height:310px}
  .video-wrap video{max-height:430px}
- .video-caption{font-size:9px}
+ .video-caption{font-size:11px}
  .decision-lead{font-size:22px}
  .decision-rows article,.fit-lines>div{grid-template-columns:1fr;gap:8px}
  .fit-grid>p{font-size:22px}
