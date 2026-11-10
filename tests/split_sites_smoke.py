@@ -82,8 +82,12 @@ def main():
                     images = page.locator("img")
                     for i in range(images.count()):
                         image = images.nth(i)
-                        assert image.evaluate("(el) => el.complete && el.naturalWidth > 0"), \
-                            f"{label}: broken image src {image.get_attribute('src')}"
+                        image.evaluate("(el) => { el.loading = 'eager'; }")
+                        page.wait_for_function(
+                            "(el) => el.complete && el.naturalWidth > 0",
+                            arg=image.element_handle(),
+                            timeout=10000,
+                        )
                     page.screenshot(path=str(OUT / f"{label}-{width}.png"), full_page=True)
                     print(f"PASS {label:15} {width}px (render, links, images, script, overflow)", flush=True)
 
