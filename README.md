@@ -1,6 +1,6 @@
 # Skaromny — personal identity + professional profile
 
-Two independent sites, one repository, three pages. All public-facing branding uses **Skaromny**.
+Two independent sites, one repository, four published pages (Personal, Hire, Spotify–Needle, Yope). All public-facing branding uses **Skaromny**.
 
 | Site | Source | Output | Role |
 | --- | --- | --- | --- |
@@ -16,7 +16,7 @@ Two independent sites, one repository, three pages. All public-facing branding u
 Art-directed editorial identity inspired by photographic collage, sharp typographic composition and a warm paper + black + red-orange visual language. No hiring copy or resume blocks. The four-scene layout uses layered editorial photography, type that overlaps the image, and a tightly edited project index. The monochrome visuals are **architectural and vinyl photography, not a portrait of Skaromny**. For a truly personal final hero, replace these with owner-approved photos.
 
 ### Professional
-Compact editorial CV: quiet ivory and deep green, outcomes attributed to the right work, experience and capabilities side by side, concise case rows and one purposeful contact point. No false "open to work" or recruiter-facing slogans.
+Result-led editorial professional profile: quiet ivory and deep green, headline metrics with commercial outcomes, career evidence and expanded cases on Enterprise AI and network investment decisions. No false "open to work" or recruiter-facing slogans.
 
 ### Spotify / Needle
 An independent, short note to a Spotify product team. **The opening is why Skaromny wants to build there**, with the real Needle video visible immediately; the next scenes explain judgement, relevant background and the personal ask. Uses the **real** 39-second Needle video and actual screenshot already present in this repository. It explicitly disclaims Spotify affiliation. The 22-track note is a specific demo example and is not presented as a production metric.
@@ -62,7 +62,7 @@ Existing assets are kept at the repository root, **not duplicated in git**:
 - `assets/selected.webp`, `assets/review.webp`, `assets/social.webp`, `assets/spotify.webp`: existing real product screenshots.
 - `decks/*.pdf`: existing tailored presentations kept as source material only; **not published** until rebranded and content-approved.
 
-The build copies authentic app media into `dist/hire/assets/` and one screenshot into `dist/personal/media/`. It deliberately **does not publish** the older pitch PDFs because they need surname and content verification.
+The build copies authentic app media and the **unaltered original 3-page November 10 CV** (`assets/Eugen_Skaromny_CV.pdf`, SHA-256 `d3fd77b3e1e84bb3e9c55d5084acad308de203b45aae838e2f171e0da23b1896`) into `dist/hire/assets/`, and one real screenshot into `dist/personal/media/`. The CV generator has been removed; build and QA fail if the PDF differs from the user's original upload. It deliberately **does not publish** the older pitch PDFs because they need surname and content verification.
 
 Never fabricate user metrics, employment dates or endorsements. Exact numeric statements need owner approval before publishing. No generated fake face, fake Needle interface or simulated product video is included.
 
@@ -83,6 +83,5 @@ GitHub Actions checks `npm run build`, local media/links, JS syntax, viewport ov
 
 ### Remaining decisions
 - Personal portrait: add authentic, owner-approved imagery for a final art-directed version.
-- Published CV: only expose a PDF when the final CV is available and verified.
 - Review public metrics and employer details.
-- Create two Cloudflare Pages projects and review them on temporary pages.dev URLs before custom domain cutover. Keep the old DNS records saved for rollback.
+- Cloudflare Pages already exists; Git auto-deploy is currently disconnected. After approved merge, publish both dist outputs with Wrangler, without touching DNS.
