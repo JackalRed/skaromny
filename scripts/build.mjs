@@ -1,7 +1,7 @@
 import { cpSync, mkdirSync, rmSync, copyFileSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createCV } from "./create-cv.mjs";
+import { createHash } from "node:crypto";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const at = (...paths) => resolve(root, ...paths);
@@ -17,9 +17,19 @@ for (const app of ["personal", "hire"]) {
 mkdirSync(at("dist", "personal", "media"), { recursive: true });
 copyFileSync(at("assets", "selected.webp"), at("dist", "personal", "media", "selected.webp"));
 
+// Ship the unmodified, user-supplied November 10 CV. NEVER regenerate or rewrite it.
+const cvSource = at("assets", "Eugen_Skaromny_CV.pdf");
+if (!existsSync(cvSource)) {
+  throw new Error("Original 3-page CV is missing: assets/Eugen_Skaromny_CV.pdf. Download the user's Nov 10 source and copy it there, unchanged. No generated CV is permitted.");
+}
+const cvData = readFileSync(cvSource);
+const expectedSha = "d3fd77b3e1e84bb3e9c55d5084acad308de203b45aae838e2f171e0da23b1896";
+const cvSha = createHash("sha256").update(cvData).digest("hex");
+if (cvSha !== expectedSha) {
+  throw new Error("Wrong CV file: expected the November 10 original PDF. Sha256=" + cvSha);
+}
 cpSync(at("assets"), at("dist", "hire", "assets"), { recursive: true });
-const cv = createCV(at("dist", "hire", "assets", "Eugen_Skaromny_CV.pdf"));
-console.log("Generated selectable two-page CV:", cv.bytes, "bytes");
+console.log("Copied original, unchanged 3-page CV (sha256 " + cvSha.slice(0, 12) + "...)");
 
 
 // Deploy robustness: put the final stylesheet inside the page document.
