@@ -25,7 +25,7 @@ if (prefersReduced || !("IntersectionObserver" in window)) {
         if (!display.isConnected) return;
         const progress = Math.min((now - started) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        display.textContent = Math.round(finalValue * eased) + suffix;
+        display.textContent = (Number.isInteger(finalValue) ? Math.round(finalValue * eased) : (Math.round(finalValue * eased * 10) / 10).toFixed(1)) + suffix;
         if (progress < 1) requestAnimationFrame(tick);
         else display.textContent = finalValue + suffix;
       };
