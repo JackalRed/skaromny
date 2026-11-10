@@ -54,7 +54,7 @@ def main():
         ("personal", personal, "Skaromny"),
         ("hire", hire, "Product leadership"),
         ("spotify-needle", hire + "spotify-needle/", "Spotify"),
-        ("yope", hire + "yope/", "Less scroll. More us."),
+        ("yope", hire + "yope/", "Less scroll."),
     ]
     try:
         with sync_playwright() as p:
