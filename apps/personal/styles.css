@@ -11,3 +11,30 @@
 @media(max-width:680px){.site-head{height:65px}.site-head nav{gap:14px}.site-head nav a{font-size:11px}.head-edition{display:none}.brand{font-size:17px}.brand-dash{width:22px}.hero-margin{height:45px;font-size:11px}.hero-margin span:last-child{display:none}.cover{height:510px;min-height:0}.cover-architecture{inset:0 0 0 12%}.cover-record{width:53%;top:25%;left:-8%;height:50%}.red-sticker{min-width:80px;width:23%;height:20%;left:18%;top:40%;font-size:11px;padding:9px}.cover h1{font-size:21vw;bottom:17%;left:-1%;width:102%}.cover-label{right:5%;bottom:5%;font-size:11px}.hero-foot{grid-template-columns:1fr auto;gap:15px;padding:24px 0 38px}.hero-key{grid-column:1/-1}.hero-foot p{font-size:19px}.arrow-link{min-width:78px}.statement{padding:65px var(--edge)}.statement h2{font-size:clamp(68px,13vw,100px)}.statement-copy p{font-size:18px}.work{padding:60px var(--edge)}.work-intro{display:block;padding:29px 0}.work-intro h2{font-size:clamp(65px,13vw,96px)}.work-intro p{margin-top:20px}.project-rows{grid-template-columns:1fr;gap:34px}.project.numeral{grid-column:auto;max-width:none}.project-art{height:90vw;max-height:500px;min-height:300px}.needle-logotype{font-size:15vw}.smthng-seal{font-size:15vw}.numbers span{font-size:14vw}.project-desc h3{font-size:45px}.closing{min-height:0}.closing-content{padding:35px var(--edge) 60px}.closing h2{font-size:clamp(72px,15vw,110px);margin:47px 0 20px}.closing p{font-size:20px}.closing-image{right:-65%;opacity:.22}.social-links{flex-direction:column;gap:12px}.social-links a{min-height:38px}.footer span:nth-child(2){display:none}}
 @media(max-width:380px){.site-head nav a:nth-child(2){display:none}.cover{height:440px}.cover h1{font-size:21vw}.statement h2{font-size:12vw}.work-intro h2{font-size:12.2vw}.closing h2{font-size:14vw}.hero-foot p{font-size:17px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+
+/* V4 / Personal motion art direction. Content is always legible without JS. */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.cover-firstname{position:absolute;z-index:4;top:8%;left:5%;font:800 clamp(44px,7.4vw,120px)/.88 var(--display);letter-spacing:-.025em;color:#f7f3eb;mix-blend-mode:difference;transform:rotate(-5deg);pointer-events:none}
+.cover{perspective:1000px}
+.cover-architecture,.cover-record,.red-sticker,.cover-firstname,.cover h1{will-change:transform}
+.cover-architecture{transform:scale(1.045);transition:transform 1.25s cubic-bezier(.18,.7,.22,1)}
+.cover:hover .cover-architecture{transform:scale(1.085)}
+.cover-record{transition:transform .7s cubic-bezier(.18,.75,.2,1),filter .5s ease}
+.cover:hover .cover-record{transform:rotate(-9deg) translateY(-9px)}
+.red-sticker{transition:transform .65s cubic-bezier(.2,.8,.3,1)}
+.cover:hover .red-sticker{transform:rotate(9deg) translate(5px,-7px)}
+.red-sticker span:last-child{font-size:24px;text-align:right;line-height:1}
+.project-art::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;border:1px solid transparent;transition:border-color .3s ease}
+.project:hover .project-art::after,.project:focus-within .project-art::after{border-color:#f2efe8}
+.project-art .needle-logotype,.project-art .smthng-seal,.project-art .numbers{transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+.project:hover .needle-logotype,.project:focus-within .needle-logotype{transform:translate(-4px,-11px)}
+.project:hover .smthng-seal,.project:focus-within .smthng-seal{transform:translateY(-12px) rotate(-2deg)}
+.project:hover .numbers,.project:focus-within .numbers{transform:scale(1.045)}
+.project-desc>a{transition:color .2s ease,transform .2s ease}
+.project-desc>a:hover,.project-desc>a:focus-visible{color:var(--red);transform:translate(2px,-2px)}
+@media(max-width:680px){.cover-firstname{left:6%;top:13%;font-size:clamp(55px,15vw,95px)}}
+@media(prefers-reduced-motion:reduce){
+ .cover-architecture,.cover-record,.red-sticker,.project-art .needle-logotype,.project-art .smthng-seal,.project-art .numbers,.project-desc>a{transition:none!important;will-change:auto!important}
+ .cover:hover .cover-record,.cover:hover .red-sticker,.cover:hover .cover-architecture,.project:hover .needle-logotype,.project:hover .smthng-seal,.project:hover .numbers{transform:none}
+}

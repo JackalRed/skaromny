@@ -36,4 +36,9 @@ assert(statSync(resolve(root, "dist/personal/media/selected.webp")).size > 5_000
 assert(readFileSync(resolve(root, "dist/hire/CNAME"), "utf8").trim() === "hire.skaromny.com");
 assert(readFileSync(resolve(root, "dist/personal/CNAME"), "utf8").trim() === "skaromny.com");
 assert(readFileSync(resolve(root, "dist/hire/yope/index.html"), "utf8").includes("3 small bets"), "Yope ideas page missing");
-console.log("PASS independent domains, Yope page and authentic video");
+const cvPath = resolve(root, "dist/hire/assets/Eugen_Skaromny_CV.pdf");
+const cvBytes = readFileSync(cvPath);
+assert(cvBytes.subarray(0, 8).toString("ascii") === "%PDF-1.4", "Missing or invalid CV PDF header");
+assert(cvBytes.length > 4000, "CV PDF too small");
+assert(cvBytes.toString("latin1").includes("/Count 2"), "CV must have two pages");
+console.log("PASS independent domains, Yope page, authentic video and two-page CV");
