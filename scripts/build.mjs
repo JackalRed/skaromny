@@ -1,6 +1,7 @@
 import { cpSync, mkdirSync, rmSync, copyFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createCV } from "./create-cv.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const at = (...paths) => resolve(root, ...paths);
@@ -17,6 +18,8 @@ mkdirSync(at("dist", "personal", "media"), { recursive: true });
 copyFileSync(at("assets", "selected.webp"), at("dist", "personal", "media", "selected.webp"));
 
 cpSync(at("assets"), at("dist", "hire", "assets"), { recursive: true });
+const cv = createCV(at("dist", "hire", "assets", "Eugen_Skaromny_CV.pdf"));
+console.log("Generated selectable two-page CV:", cv.bytes, "bytes");
 
 writeFileSync(at("dist", "personal", "CNAME"), "skaromny.com\n");
 writeFileSync(at("dist", "hire", "CNAME"), "hire.skaromny.com\n");
