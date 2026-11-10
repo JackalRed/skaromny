@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import threading
+import shutil
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -56,7 +57,11 @@ def main():
     ]
     try:
         with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+            chrome = shutil.which("google-chrome") or shutil.which("chromium") or shutil.which("chromium-browser")
+            launch_args = {"headless": True, "args": ["--no-sandbox"]}
+            if chrome:
+                launch_args["executable_path"] = chrome
+            browser = p.chromium.launch(**launch_args)
             for label, url, expected in pages:
                 for width in [320, 390, 768, 1440]:
                     context = browser.new_context(
