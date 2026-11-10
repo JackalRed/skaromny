@@ -1,78 +1,74 @@
-// SKAROMNY / PERSONAL — narrative motion, not generic scroll-fade cards.
-// No content is hidden without animation; everything remains accessible with JS off.
-document.querySelectorAll("[data-year]").forEach((node) => {
+// SKAROMNY / PERSONAL: scroll controls the scene, not just one-off entrance fades.
+// No GSAP dependency. Two pinned stages continuously respond to scroll position.
+// With JavaScript disabled, each section is still readable. Honors reduced motion.
+
+document.querySelectorAll("[data-year]").forEach(node => {
   node.textContent = String(new Date().getFullYear());
 });
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reducedMotion && typeof Element.prototype.animate === "function") {
-  const entrance = [
-    [".cover-architecture", [
-      { opacity: .4, transform: "scale(1.11)" },
-      { opacity: 1, transform: "scale(1.045)" }
-    ], 950, 0],
-    [".cover-record", [
-      { opacity: 0, transform: "translate(-55px,30px) rotate(-15deg)" },
-      { opacity: 1, transform: "translate(0,0) rotate(-5deg)" }
-    ], 1000, 150],
-    [".red-sticker", [
-      { opacity: 0, transform: "translateY(45px) rotate(-9deg)" },
-      { opacity: 1, transform: "translateY(0) rotate(3deg)" }
-    ], 690, 350],
-    [".cover-firstname", [
-      { opacity: 0, transform: "translateY(30px) rotate(-5deg)" },
-      { opacity: 1, transform: "translateY(0) rotate(-5deg)" }
-    ], 700, 480],
-    [".cover h1", [
-      { opacity: 0, clipPath: "inset(0 100% 0 0)" },
-      { opacity: 1, clipPath: "inset(0 0 0 0)" }
-    ], 1100, 620]
-  ];
-  for (const [selector, frames, duration, delay] of entrance) {
-    const el = document.querySelector(selector);
-    if (el) el.animate(frames, { duration, delay, easing: "cubic-bezier(.2,.8,.2,1)", fill: "backwards" });
-  }
 
-  const sections = document.querySelectorAll(".statement h2, .statement-copy, .work-intro, .project, .closing h2, .social-links");
-  if ("IntersectionObserver" in window) {
-    const reveal = new IntersectionObserver((entries, observer) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        observer.unobserve(entry.target);
-        const el = entry.target;
-        const isProject = el.matches(".project");
-        el.animate(
-          [
-            { opacity: .72, transform: isProject ? "translateY(24px)" : "translateY(17px)" },
-            { opacity: 1, transform: "translateY(0)" }
-          ],
-          { duration: isProject ? 720 : 560, easing: "cubic-bezier(.2,.8,.2,1)" }
-        );
-      }
-    }, { threshold: .13 });
-    sections.forEach(el => reveal.observe(el));
-  }
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+const header = document.querySelector(".site-head");
+const hero = document.querySelector(".hero");
+const about = document.querySelector(".statement");
+const work = document.querySelector(".work");
+const steps = [...document.querySelectorAll(".statement-index span")];
+const projects = [...document.querySelectorAll(".project")];
+
+const clamp01 = n => Math.max(0, Math.min(1, n));
+function progressFor(el) {
+  if (!el) return 0;
+  const range = Math.max(1, el.offsetHeight - window.innerHeight + (header?.offsetHeight ?? 72));
+  return clamp01((window.scrollY - el.offsetTop + (header?.offsetHeight ?? 72)) / range);
 }
 
+let queued = false;
+function render() {
+  queued = false;
+  const scrollY = window.scrollY || 0;
+  header?.classList.toggle("is-scrolled", scrollY > 14);
+  if (reduce.matches) return;
 
-// Tactile parallax is driven by scroll rather than a one-off entrance animation.
-// Scroll is passive/rAF-throttled, capped to hero height, and disabled for reduced motion.
-const personalHeader = document.querySelector(".site-head");
-const editorialCover = document.querySelector(".cover");
-let personalScheduled = false;
-function personalScrollFrame() {
-  const distance = Math.max(0, window.scrollY || 0);
-  personalHeader?.classList.toggle("is-scrolled", distance > 12);
-  if (!reducedMotion && editorialCover) {
-    const heroHeight = editorialCover.getBoundingClientRect().height || 650;
-    const y = Math.min(distance, heroHeight);
-    editorialCover.style.setProperty("--record-parallax", Math.round(y * .085) + "px");
-    editorialCover.style.setProperty("--name-parallax", -Math.round(y * .045) + "px");
+  if (hero) {
+    const p = progressFor(hero);
+    hero.style.setProperty("--hero-progress", p.toFixed(4));
+    hero.dataset.scene = p < .28 ? "opening" : p < .72 ? "transition" : "reveal";
   }
-  personalScheduled = false;
+  if (about) {
+    const p = progressFor(about);
+    about.style.setProperty("--about-progress", p.toFixed(4));
+    const phase = Math.min(2, Math.floor(p * 3));
+    steps.forEach((step, i) => step.classList.toggle("is-active", i === phase));
+    about.dataset.scene = ["products", "music", "making"][phase];
+  }
+  if (work) {
+    const rect = work.getBoundingClientRect();
+    const w = clamp01((window.innerHeight - rect.top) / Math.max(1, rect.height + window.innerHeight));
+    work.style.setProperty("--gallery-progress", w.toFixed(4));
+    for (const [i, project] of projects.entries()) {
+      const media = project.querySelector(".project-art");
+      if (!media) continue;
+      const box = media.getBoundingClientRect();
+      const local = clamp01((window.innerHeight - box.top) / (window.innerHeight + box.height));
+      media.style.setProperty("--project-progress", local.toFixed(4));
+      media.style.setProperty("--project-index", String(i));
+    }
+  }
 }
-window.addEventListener("scroll", () => {
-  if (personalScheduled) return;
-  personalScheduled = true;
-  requestAnimationFrame(personalScrollFrame);
-}, { passive:true });
-personalScrollFrame();
+function requestRender() {
+  if (queued) return;
+  queued = true;
+  requestAnimationFrame(render);
+}
+
+window.addEventListener("scroll", requestRender, { passive:true });
+window.addEventListener("resize", requestRender, { passive:true });
+reduce.addEventListener?.("change", () => {
+  if (reduce.matches) {
+    hero?.style.setProperty("--hero-progress", "0");
+    about?.style.setProperty("--about-progress", "0");
+    work?.style.setProperty("--gallery-progress", "0");
+  }
+  requestRender();
+});
+
+requestRender();
