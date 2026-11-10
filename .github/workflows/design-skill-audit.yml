@@ -1,0 +1,74 @@
+name: Design skill audit (non-blocking)
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - index.html
+      - style.css
+      - script.js
+      - DESIGN.md
+      - .github/workflows/design-skill-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Impeccable source-level detector
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p artifacts/design-audit
+          set +e
+          npx --yes impeccable detect index.html style.css script.js > artifacts/design-audit/impeccable.txt 2>&1
+          status=$?
+          cat artifacts/design-audit/impeccable.txt
+          echo "impeccable_exit=$status"
+          exit 0
+      - name: Fetch official Taste Skill for its own lint and inspector
+        continue-on-error: true
+        shell: bash
+        run: |
+          git clone --depth=1 https://github.com/Leonxlnx/taste-skill.git /tmp/taste-skill
+          find /tmp/taste-skill -name lint.mjs -o -name inspect.mjs
+      - name: Taste source lint
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          LINT="$(find /tmp/taste-skill -name lint.mjs | head -1)"
+          if [ -z "$LINT" ]; then echo "Taste lint unavailable"; exit 0; fi
+          node "$LINT" . > artifacts/design-audit/taste-lint.txt 2>&1
+          status=$?
+          cat artifacts/design-audit/taste-lint.txt
+          echo "taste_lint_exit=$status"
+          exit 0
+      - name: Taste browser inspector
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          INSPECT="$(find /tmp/taste-skill -name inspect.mjs | head -1)"
+          if [ -z "$INSPECT" ]; then echo "Taste inspector unavailable"; exit 0; fi
+          python3 -m http.server 4173 >/tmp/portfolio-http.log 2>&1 &
+          sleep 3
+          export CHROME_PATH="$(command -v google-chrome || command -v chromium || true)"
+          node "$INSPECT" http://127.0.0.1:4173 --out .taste-skill/inspect > artifacts/design-audit/taste-inspect.txt 2>&1
+          status=$?
+          cat artifacts/design-audit/taste-inspect.txt
+          echo "taste_inspect_exit=$status"
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: design-skill-audit-report
+          path: |
+            artifacts/design-audit/
+            .taste-skill/inspect/
+          if-no-files-found: ignore
