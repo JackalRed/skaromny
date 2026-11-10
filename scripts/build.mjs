@@ -60,10 +60,10 @@ for (const [site, domain] of [
   ["personal", "https://skaromny.com/"],
   ["hire", "https://hire.skaromny.com/"]
 ]) {
-  const notFound = \`<!doctype html>
+  const notFound = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>404 — Skaromny</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f6f5ef;color:#17231b;font:16px/1.5 system-ui,sans-serif}main{padding:28px;max-width:540px}h1{font-size:clamp(64px,12vw,110px);letter-spacing:-.08em;margin:0}a{color:#15583b;font-weight:700;text-underline-offset:4px}:focus-visible{outline:3px solid #15583b;outline-offset:4px}</style></head>
-<body><main><h1>404.</h1><p>This page doesn't exist.</p><a href="\${domain}">Back to Skaromny ↗</a></main></body></html>\`;
+<body><main><h1>404.</h1><p>This page doesn't exist.</p><a href="${domain}">Back to Skaromny ↗</a></main></body></html>`;
   writeFileSync(at("dist", site, "404.html"), notFound);
 }
 
