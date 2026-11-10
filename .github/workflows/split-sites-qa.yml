@@ -1,0 +1,51 @@
+name: Split sites — preview QA
+
+on:
+  pull_request:
+    paths:
+      - "apps/**"
+      - "scripts/**"
+      - "tests/**"
+      - "package.json"
+      - ".github/workflows/split-sites-qa.yml"
+  push:
+    branches:
+      - redesign/personal-hire-split
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build two independent sites
+        run: npm run build
+      - name: Check all local links and authentic media
+        run: npm run check
+      - name: Validate JavaScript
+        run: |
+          node --check apps/personal/script.js
+          node --check apps/hire/script.js
+          node --check apps/hire/spotify-needle/script.js
+      - name: Install Playwright
+        run: python -m pip install --disable-pip-version-check playwright
+      - name: Browser test at 320 / 390 / 768 / 1440
+        run: python tests/split_sites_smoke.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: skaromny-two-sites-screenshots
+          path: artifacts/screenshots/*.png
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: skaromny-two-sites-build
+          path: dist/
+          include-hidden-files: true
