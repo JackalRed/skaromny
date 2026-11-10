@@ -80,6 +80,24 @@ h1 em::after{content:'';position:absolute;left:-7px;right:-7px;bottom:1px;height
 @media(max-width:640px){.container{width:calc(100% - 36px)}.topbar{padding:18px 0;flex-wrap:wrap}.brand{font-size:20px}.nav{gap:16px}.nav a{font-size:11px}.nav a:first-child{display:none}.nav .nav-pill{padding:9px 11px}.hero{padding:58px 0}.hero h1{font-size:clamp(55px,13vw,76px)}.hero-art{min-height:325px}.art-card{padding:12px;font-size:11px}.art-big{font-size:80px}.art-spark{font-size:48px}.art-patch{inset:20%}.section{padding:72px 0}.section h2{font-size:50px}.section-head{margin-bottom:32px}.idea-text{padding:27px 23px}.idea h3{font-size:42px}.idea-visual{padding:65px 15px 45px}.experiment{grid-template-columns:1fr;margin-top:38px}.proofs{grid-template-columns:1fr 1fr;margin-top:44px}.proof{border-right:0;border-bottom:1px solid #706e63;padding:24px 12px!important}.proof:nth-child(odd){border-right:1px solid #706e63}.proof:nth-child(n+3){border-bottom:0}.bio{padding:75px 0}.close{padding:72px 0}.close h2{font-size:59px}.ticker-in{font-size:10px;gap:20px}.hero-lede{font-size:17px}}
 @media(max-width:640px){.hero-art{overflow:clip;isolation:isolate}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.thesis-block{margin:0 0 28px;padding:38px 41px 30px;border:2px solid var(--ink);border-radius:14px;background:var(--acid)}
+.thesis-block h3{font-size:clamp(35px,4.5vw,60px);max-width:870px;margin:15px 0 20px}
+.thesis-block h3 em{font-weight:500}
+.thesis-block>p{font-size:17px;line-height:1.55;max-width:910px;margin:0 0 31px}
+.thesis-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid var(--ink);padding-top:20px}
+.thesis-steps span{font:500 11px 'DM Mono',monospace;letter-spacing:.04em}
+.health-block{border:2px solid var(--ink);border-radius:14px;padding:35px 40px;margin:0 0 50px;background:var(--white)}
+.health-header{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end}
+.health-header h3{font-size:clamp(32px,4vw,48px);margin:12px 0 0}
+.health-header p{font-size:15px;line-height:1.6;color:#4d4a45;margin:0}
+.health-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:28px 0 23px;border-top:1px solid var(--ink);border-bottom:1px solid #cbc6b9}
+.health-grid>div{padding:20px 16px 23px 0}
+.health-grid>div+div{border-left:1px solid #cbc6b9;padding-left:15px}
+.health-grid b{display:block;font-size:14px;margin-bottom:8px}
+.health-grid span{display:block;font-size:12px;line-height:1.55;color:var(--muted)}
+.health-note{font-size:13px;line-height:1.65;margin:0}
+@media(max-width:640px){.thesis-block,.health-block{padding:25px 21px}.thesis-steps,.health-header{grid-template-columns:1fr;gap:14px}.health-grid{grid-template-columns:1fr 1fr}.health-grid>div:nth-child(3){border-left:0;padding-left:0}.health-grid>div{border-bottom:1px solid #cbc6b9}.health-grid>div:nth-child(n+3){border-bottom:0}.health-note{font-size:12px}}
 </style>
 </head>
 <body>
@@ -92,38 +110,55 @@ h1 em::after{content:'';position:absolute;left:-7px;right:-7px;bottom:1px;height
 <main id="main">
 <section class="hero" aria-labelledby="hero-title">
 <div>
-<span class="sidetag">A PRODUCT LOVE LETTER, NOT A COVER LETTER ✳</span>
+<span class="sidetag">AN INDEPENDENT PRODUCT NOTE FOR YOPE</span>
 <div class="eyebrow" style="margin-bottom:19px">Eugen Skaromny × Yope / Product thinking</div>
 <h1 id="hero-title">Less scroll.<br>More <em>us.</em></h1>
-<p class="hero-lede">What if the next big social network grows not from how long people watch, but from how often friends show up for each other?</p>
-<div class="actions"><a class="btn btn-dark" href="#ideas">Explore 3 product bets <span class="arr">↘</span></a><a class="btn btn-white" href="#about">Meet the PM <span class="arr">↗</span></a></div>
+<p class="hero-lede">I have a hypothesis: lasting value in a private group might come from reciprocal participation, not content volume. Here is how I'd test it — and what would change my mind.</p>
+<div class="actions"><a class="btn btn-dark" href="#ideas">Explore the thesis <span class="arr">↘</span></a><a class="btn btn-white" href="#about">Meet the PM <span class="arr">↗</span></a></div>
 </div>
 <div class="hero-art" aria-label="Abstract editorial illustration of close-friend interactions, not an app screenshot">
-<div class="art-orbit"></div><div class="art-patch"></div><div class="art-big">you<br>+ me</div>
+<div class="art-patch"></div><div class="art-big">you<br>+ me</div>
 <div class="art-card a">no feed.<br>no performance.</div>
 <div class="art-card b">real friends<br>real moments ♡</div>
-<div class="art-card c">tiny interactions<br>big connection.</div><span class="art-spark" aria-hidden="true">✳</span>
+<div class="art-card c">tiny interactions<br>big connection.</div>
 </div>
 </section>
 </div>
-<div class="ticker"><div class="container ticker-in"><span>THREE HYPOTHESES</span><b>✳</b><span>ONE SOCIAL LOOP</span><b>✳</b><span>TEST FIRST, SCALE SECOND</span><b>✳</b><span>PRIVATE BY DESIGN</span></div></div>
 <div class="container">
 <section class="section" id="ideas">
 <div class="section-head">
-<div><div class="kicker">An unsolicited product memo</div><h2>3 small bets.<br>Real impact.</h2></div>
-<p>Yope already nails the ingredients: private circles, one-tap photo sharing, lock-screen presence, streaks and AI recaps. I'd focus on the moments between those features: <strong>reciprocity, group revival and shared memory.</strong> These are hypotheses, not claims about Yope's internal data.</p>
+<div><div class="kicker">One falsifiable product thesis</div><h2>One theory.<br>Three tests.</h2></div>
+<p>Yope already has private circles, photo sharing, streaks and AI recaps. Before proposing new features, I would ask: <strong>which behaviors make a group worth returning to?</strong> I haven't seen Yope's internal data. This is a hypothesis to investigate, not a diagnosis.</p>
+</div>
+<div class="thesis-block" id="thesis">
+<div class="eyebrow">THE THESIS / TO BE PROVEN OR DISPROVEN</div>
+<h3>Maybe the photo isn't the product.<br><em>Maybe the exchange is.</em></h3>
+<p>If early reciprocity helps groups last, Yope might grow by helping friends <strong>start, restore and deepen</strong> their natural exchange. But some groups get real value from watching rather than posting. We need to learn which patterns actually predict durable value.</p>
+<div class="thesis-steps" aria-label="Proposed lifecycle"><span>01 &nbsp; START THE LOOP</span><span>02 &nbsp; RESTORE THE LOOP</span><span>03 &nbsp; COMPOUND THE LOOP</span></div>
+</div>
+<div class="health-block">
+<div class="health-header"><div><div class="eyebrow">BEFORE BUILDING ANYTHING</div><h3>Understand group health.</h3></div><p>No arbitrary score and no ideal group shape. Segment groups by size, age and purpose; then investigate how behavior relates to D30/D60 retention.</p></div>
+<div class="health-grid">
+<div><b>Contribution patterns</b><span>Unique contributors, posting concentration, repeat activity</span></div>
+<div><b>Reciprocity</b><span>Responses, mutual contributions and time between exchanges</span></div>
+<div><b>Natural cadence</b><span>Active days and deviations from each group's established rhythm</span></div>
+<div><b>Durability</b><span>Group-level D7, D30 and D60 retention across different group types</span></div>
+</div>
+<p class="health-note"><strong>Candidate signal:</strong> Weekly Reciprocal Groups (% of groups with 2+ members contributing in a rolling 7-day window). Test whether it predicts retained groups better than simple activity metrics. If it doesn't, don't use it as the North Star.</p>
 </div>
 <article class="idea" id="bet-1">
-<div class="idea-text"><div class="idea-top"><span class="number">01</span><span class="phase">Activation / Week 1</span></div>
+<div class="idea-text"><div class="idea-top"><span class="number">01</span><span class="phase">Activation / first week</span></div>
 <h3>The first <i>“you too?”</i> moment.</h3>
-<p class="promise">Don't optimize for creating a group. Optimize for the first moment a friend <strong>answers with a photo.</strong></p>
-<p class="idea-label">Product bet</p>
-<p class="idea-desc">Make onboarding feel like the beginning of an exchange, not a setup checklist. After the first snap, offer a personal one-tap invitation framed around that exact moment: “show me yours”. Make the recipient's photo reply frictionless.</p>
-<div class="divline"></div><p class="idea-label">Smallest test</p>
-<p class="idea-desc">A/B test a contextual photo-reply invitation after the first share against Yope's current onboarding. Start with newly formed friend groups.</p>
-<div class="divline"></div><p class="idea-label">North-star signal</p>
-<p class="metric">New groups with 2+ unique photo contributors within 48 hours</p>
-<p class="guard">Guardrails: invite accept rate, notification opt-outs, group D7 retention.</p>
+<p class="promise">Is the first reply the start of a relationship — or just a one-off reaction? <strong>Let the data show the threshold.</strong></p>
+<p class="idea-label">Hypothesis</p>
+<p class="idea-desc">Early reciprocal sharing may predict group retention. But the meaningful activation event might be a second contributor, a third contribution, or activity on multiple days. We shouldn't choose it in advance.</p>
+<div class="divline"></div><p class="idea-label">What I'd test</p>
+<p class="idea-desc">First examine the funnel: group created → first share → second distinct contributor → third contribution → D7 active → D30 retained. If a specific step predicts durable groups, A/B test a contextual photo-reply invitation against today's experience, randomized at group level.</p>
+<div class="divline"></div><p class="idea-label">Decision signal</p>
+<p class="metric">Incremental D30 retained groups — not just faster replies</p>
+<p class="guard">Leading indicators: time to second contributor, contribution across multiple days. Guardrails: invite acceptance, mute rate, user trust.</p>
+<div class="divline"></div><p class="idea-label">What would change my mind?</p>
+<p class="idea-desc">If reciprocal sharing doesn't predict retention — or the intervention increases second shares without improving D30 — abandon this activation mechanic.</p>
 </div>
 <div class="idea-visual one">
 <div class="visual-label">Concept sketch · not a real Yope screen</div>
@@ -131,22 +166,24 @@ h1 em::after{content:'';position:absolute;left:-7px;right:-7px;bottom:1px;height
 <div class="chat-title">♡ the weekend crew <span style="float:right">3 friends</span></div>
 <div class="chat-message"><div class="avatar">👩</div><div class="bubble">📷 this is my rainy-day view</div></div>
 <div class="chat-message"><div class="avatar" style="background:#ffb4c6">🧑</div><div class="bubble green">📷 hah, here's mine ✨</div></div>
-<div class="chat-foot">2 friends shared · a group is alive ✳</div>
+<div class="chat-foot">2 friends shared · a group is alive </div>
 </div>
 <div class="sticker">from invite → interaction ↗</div>
 </div>
 </article>
 <article class="idea" id="bet-2">
-<div class="idea-text"><div class="idea-top"><span class="number" style="background:var(--pink)">02</span><span class="phase">Reactivation / Weeks 2–4</span></div>
+<div class="idea-text"><div class="idea-top"><span class="number" style="background:var(--pink)">02</span><span class="phase">Reactivation / broken cadence</span></div>
 <h3>Pass the camera.</h3>
-<p class="promise">An inactive group doesn't need more push notifications. It needs <strong>a reason to respond.</strong></p>
-<p class="idea-label">Product bet</p>
-<p class="idea-desc">For groups that have gone quiet, test an opt-in, one-tap photo handoff: a friend shares a tiny prompt like “your view right now?” or “what changed since Friday?” The prompt arrives attached to a real friend's moment, not a generic app reminder.</p>
-<div class="divline"></div><p class="idea-label">Smallest test</p>
-<p class="idea-desc">Randomize eligible groups inactive for 7+ days: contextual friend-to-friend handoff vs existing reactivation experience. Limit frequency and make opting out obvious.</p>
-<div class="divline"></div><p class="idea-label">North-star signal</p>
-<p class="metric">Dormant groups returning to 2+ contributors within 72 hours</p>
-<p class="guard">Guardrails: notification fatigue, hidden/muted groups, D14 sustained activity.</p>
+<p class="promise">Don't revive groups because <strong>seven days have passed.</strong> First ask whether their natural social rhythm has genuinely changed.</p>
+<p class="idea-label">Hypothesis</p>
+<p class="idea-desc">A friend-led invitation may restore contribution when a group deviates from its usual cadence. A weekend-only group and a daily-sharing group should not get the same 'you're inactive' treatment.</p>
+<div class="divline"></div><p class="idea-label">What I'd test</p>
+<p class="idea-desc">Segment groups by historical cadence and compare expected versus actual participation. For groups with meaningful deviations, randomize a low-frequency friend-initiated photo handoff against the existing experience or a holdout.</p>
+<div class="divline"></div><p class="idea-label">Decision signal</p>
+<p class="metric">Sustained return to the group's own contribution rhythm</p>
+<p class="guard">Leading indicator: renewed contributions from multiple members. Guardrails: notification opt-outs, group mutes and D14 engagement.</p>
+<div class="divline"></div><p class="idea-label">What would change my mind?</p>
+<p class="idea-desc">If the intervention only creates a single notification-driven reply, or the group naturally recovers without it, it isn't a durable reactivation lever.</p>
 </div>
 <div class="idea-visual two">
 <div class="visual-label">Concept sketch · not a real Yope screen</div>
@@ -160,16 +197,18 @@ h1 em::after{content:'';position:absolute;left:-7px;right:-7px;bottom:1px;height
 </div>
 </article>
 <article class="idea" id="bet-3">
-<div class="idea-text"><div class="idea-top"><span class="number" style="background:var(--blue)">03</span><span class="phase">Retention / Month 2+</span></div>
+<div class="idea-text"><div class="idea-top"><span class="number" style="background:var(--blue)">03</span><span class="phase">Retention / established groups</span></div>
 <h3>Memories with a sequel.</h3>
-<p class="promise">Yope already has AI recaps. What if the best recap isn't something you watch — <strong>it's a conversation you restart?</strong></p>
-<p class="idea-label">Product bet</p>
-<p class="idea-desc">Give small circles an optional “then & now” moment built from already-shared photos. Let every participant add today's continuation, keeping it private to the existing group. Don't generate fake memories or publish externally.</p>
-<div class="divline"></div><p class="idea-label">Smallest test</p>
-<p class="idea-desc">Offer an interactive recap to eligible, established groups with shared history. Compare against passive recaps or a holdout, measuring new shared contributions rather than recap views.</p>
-<div class="divline"></div><p class="idea-label">North-star signal</p>
-<p class="metric">Recap-triggered new photo conversations per eligible group</p>
-<p class="guard">Guardrails: privacy controls, consent, dismiss rate, incremental D30 retention.</p>
+<p class="promise">Shared history could inspire a new moment. <strong>But does it need AI — or just the right invitation?</strong></p>
+<p class="idea-label">Hypothesis</p>
+<p class="idea-desc">A reminder of a meaningful shared moment may trigger a new exchange. The interaction matters more than how sophisticated the recap looks, and the group remains private.</p>
+<div class="divline"></div><p class="idea-label">What I'd test</p>
+<p class="idea-desc">Test a holdout plus three lightweight variants: a static 'on this day' memory, an interactive 'add today' memory, and an AI-enhanced recap. Measure downstream contributions rather than views or delight alone.</p>
+<div class="divline"></div><p class="idea-label">Decision signal</p>
+<p class="metric">Incremental reciprocal contributions and D30/D60 retention</p>
+<p class="guard">Secondary: new active days, repeat participation. Guardrails: dismissals, privacy/consent complaints and content quality.</p>
+<div class="divline"></div><p class="idea-label">What would change my mind?</p>
+<p class="idea-desc">If static memories work as well as AI, choose the simpler solution. If none improves durable group activity, stop building memory-driven retention features.</p>
 </div>
 <div class="idea-visual three">
 <div class="visual-label">Concept sketch · not a real Yope screen</div>
@@ -182,9 +221,9 @@ h1 em::after{content:'';position:absolute;left:-7px;right:-7px;bottom:1px;height
 </div>
 </article>
 <div class="experiment">
-<div class="step"><div class="stepno">STEP 01 / INSTRUMENT</div><h4>See the real loops</h4><p>Map group states, time to first reciprocal share and silent-group cohorts. Segment by circle size and group age before shipping any prompt.</p></div>
-<div class="step"><div class="stepno">STEP 02 / EXPERIMENT</div><h4>Run lightweight tests</h4><p>Start with the smallest opt-in workflow. Randomize by group, not individual, to avoid social network interference between variants.</p></div>
-<div class="step"><div class="stepno">STEP 03 / DECIDE</div><h4>Earn the rollout</h4><p>Scale only if meaningful two-way sharing improves and trust guardrails hold. Track retained groups, not vanity opens or notification volume.</p></div>
+<div class="step"><div class="stepno">STEP 01 / DISCOVER</div><h4>Find the pattern</h4><p>Analyze group cohorts and behavioral paths. Ask which participation patterns predict sustained value — including groups that primarily view instead of post.</p></div>
+<div class="step"><div class="stepno">STEP 02 / CAUSAL TEST</div><h4>Challenge the idea</h4><p>Run small group-randomized experiments with holdouts, realistic baselines, and pre-defined primary outcomes. Don't confuse correlation with lift.</p></div>
+<div class="step"><div class="stepno">STEP 03 / LEARN</div><h4>Be willing to be wrong</h4><p>If reciprocity doesn't predict or improve D30/D60 group retention, reject the thesis. Scale evidence, not attachment to the concept.</p></div>
 </div>
 </section>
 </div>
