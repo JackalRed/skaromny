@@ -157,6 +157,8 @@ def main():
                         assert moved > top_progress + .15, (
                             f"Personal/{width}: visual hero did not animate on scroll ({top_progress} -> {moved})"
                         )
+                        if width in (390, 1440):
+                            page.screenshot(path=str(OUT / f"personal-hero-motion-{width}.png"))
                         page.evaluate("""() => {
                           const about = document.querySelector('.statement');
                           window.scrollTo({top: about.offsetTop + 350, behavior:'instant'});
@@ -166,6 +168,8 @@ def main():
                             "(el) => Number(getComputedStyle(el).getPropertyValue('--about-progress'))"
                         )
                         assert about_progress > .1, f"Personal/{width}: about scene is static ({about_progress})"
+                        if width in (390, 1440):
+                            page.screenshot(path=str(OUT / f"personal-intro-motion-{width}.png"))
                         assert page.locator(".statement-index span.is-active").count() == 1
                         page.evaluate("window.scrollTo({top: 0, behavior:'instant'})")
                     if label == "hire":
