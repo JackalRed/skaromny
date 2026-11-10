@@ -43,7 +43,7 @@ try:
             assert response and response.status == 200, f"HTTP failed at {width}"
             page.evaluate("document.fonts.ready")
             assert "Eugen Skoromny" in page.title(), "Missing page title"
-            assert page.get_by_role("heading", name="I make complex things feel simple.").count() == 1
+            assert page.get_by_role("heading", name="I make complex products feel simple.").count() == 1
 
             dimensions = page.evaluate("""() => ({
                 scroll: document.documentElement.scrollWidth,
