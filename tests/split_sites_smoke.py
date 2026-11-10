@@ -138,6 +138,34 @@ def main():
                         assert header.evaluate("(el) => el.classList.contains('is-scrolled')"), (
                             f"{label}/{width}: sticky header did not react to scroll; did JS load?"
                         )
+                    if label == "personal":
+                        # Prove scroll really changes the visual composition, not just
+                        # a tiny one-off fade-in or CSS presence.
+                        top_progress = page.locator(".hero").evaluate(
+                            "(el) => Number(getComputedStyle(el).getPropertyValue('--hero-progress'))"
+                        )
+                        page.evaluate("""() => {
+                          const hero = document.querySelector('.hero');
+                          window.scrollTo({top: hero.offsetTop + 550, behavior:'instant'});
+                        }""")
+                        page.wait_for_timeout(260)
+                        moved = page.locator(".hero").evaluate(
+                            "(el) => Number(getComputedStyle(el).getPropertyValue('--hero-progress'))"
+                        )
+                        assert moved > top_progress + .15, (
+                            f"Personal/{width}: visual hero did not animate on scroll ({top_progress} -> {moved})"
+                        )
+                        page.evaluate("""() => {
+                          const about = document.querySelector('.statement');
+                          window.scrollTo({top: about.offsetTop + 350, behavior:'instant'});
+                        }""")
+                        page.wait_for_timeout(260)
+                        about_progress = page.locator(".statement").evaluate(
+                            "(el) => Number(getComputedStyle(el).getPropertyValue('--about-progress'))"
+                        )
+                        assert about_progress > .1, f"Personal/{width}: about scene is static ({about_progress})"
+                        assert page.locator(".statement-index span.is-active").count() == 1
+                        page.evaluate("window.scrollTo({top: 0, behavior:'instant'})")
                     if label == "hire":
                         assert page.locator('.header-actions .download-link').count() == 1
                         assert page.locator('.header-actions .contact-short').count() == 1
@@ -150,6 +178,9 @@ def main():
                         assert page.locator(".case-story").count() == 4, "Expected two Vodafone cases"
                         assert "Smart CAPEX" in page.locator(".case-stories").inner_text()
                         assert "7M" in page.locator(".case-stories").inner_text()
+                        assert "€7M" in page.locator(".case-stories").inner_text()
+                        assert "12-month traffic forecasts" in page.locator(".case-stories").inner_text()
+                        assert "2.5" in page.locator(".numbers").inner_text()
                         assert page.locator(".site-header").evaluate(
                             "(el) => getComputedStyle(el).backdropFilter !== 'none'"
                         ), "Sticky header must have frosted-glass treatment"
