@@ -23,7 +23,7 @@ writeFileSync(at("dist", "hire", "CNAME"), "hire.skaromny.com\n");
 
 const sites = [
   ["personal", "https://skaromny.com/", ["/"]],
-  ["hire", "https://hire.skaromny.com/", ["/", "/spotify-needle/"]],
+  ["hire", "https://hire.skaromny.com/", ["/", "/spotify-needle/", "/yope/"]],
 ];
 for (const [name, origin, routes] of sites) {
   const entries = routes.map(route => "  <url><loc>" + origin.replace(/\/$/, "") + route + "</loc></url>").join("\n");
@@ -35,5 +35,5 @@ if (!existsSync(at("dist", "hire", "assets", "needle-demo.mp4"))) {
   throw new Error("Real Needle video is missing. Never replace it with a mock.");
 }
 console.log("Built dist/personal → skaromny.com");
-console.log("Built dist/hire → hire.skaromny.com (including /spotify-needle/)");
+console.log("Built dist/hire → hire.skaromny.com (including /spotify-needle/ and /yope/)");
 console.log("Real Needle demo and screenshot media copied.");
