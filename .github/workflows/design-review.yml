@@ -1,0 +1,51 @@
+name: Design review — Impeccable & Taste
+
+on:
+  push:
+    branches:
+      - redesign/personal-hire-split
+      - main
+  pull_request:
+    paths:
+      - "apps/**"
+      - ".github/workflows/design-review.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  design-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Impeccable — source-level visual anti-pattern detector
+        shell: bash
+        run: |
+          mkdir -p artifacts/design
+          set +e
+          npx --yes impeccable detect apps/personal/index.html apps/personal/styles.css apps/hire/index.html apps/hire/styles.css apps/hire/spotify-needle/index.html apps/hire/spotify-needle/styles.css > artifacts/design/impeccable.txt 2>&1
+          status=$?
+          cat artifacts/design/impeccable.txt
+          echo "Impeccable exit code: $status (advisory only)"
+          exit 0
+      - name: Taste Skill — official copy review
+        shell: bash
+        run: |
+          git clone --quiet --depth=1 https://github.com/Leonxlnx/taste-skill.git /tmp/sk-taste
+          LINT=/tmp/sk-taste/skills/taste-skill/scripts/copy-lint.mjs
+          mkdir -p artifacts/design
+          for page in apps/personal/index.html apps/hire/index.html apps/hire/spotify-needle/index.html; do
+            echo "=== $page ===" | tee -a artifacts/design/taste-copy.txt
+            node "$LINT" "$page" --kind software >> artifacts/design/taste-copy.txt 2>&1 || true
+          done
+          cat artifacts/design/taste-copy.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: skaromny-design-review
+          path: artifacts/design/
+          if-no-files-found: ignore

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" role="img" aria-label="Abstract architectural light and shadow">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#ededeb"/><stop offset="1" stop-color="#858682"/></linearGradient>
+  <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dededb"/><stop offset=".54" stop-color="#787b77"/><stop offset="1" stop-color="#222420"/></linearGradient>
+  <pattern id="lines" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 1H5" stroke="#090b0a" opacity=".2" stroke-width=".6"/></pattern>
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".53" numOctaves="2" stitchTiles="stitch" seed="8"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".15"/></feComponentTransfer></filter>
+</defs>
+<rect width="900" height="1100" fill="url(#sky)"/>
+<path d="M0 0H900V275L480 300 0 670Z" fill="#2e302e"/>
+<path d="M0 198L900 83V266L180 555Z" fill="#b8b9b4"/>
+<path d="M-120 1030L900 142V1100H0Z" fill="url(#wall)"/>
+<path d="M290 1100L900 610V1100Z" fill="#101311"/>
+<path d="M420 1100L900 686V806L578 1100Z" fill="#c9c9c2"/>
+<path d="M55 1100L900 340V425L148 1100Z" fill="#eaeae4" opacity=".8"/>
+<path d="M65 1100L870 390" stroke="#0d1010" stroke-width="14" opacity=".5"/>
+<path d="M490 0V750" stroke="#1b1c1a" opacity=".42" stroke-width="2"/>
+<path d="M0 750H900" stroke="#fff" opacity=".22"/>
+<rect width="900" height="1100" fill="url(#lines)" opacity=".5"/>
+<rect width="900" height="1100" filter="url(#grain)" opacity=".9"/>
+</svg>
