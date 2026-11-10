@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - redesign/personal-hire-split
+      - main
   pull_request:
     paths:
       - "apps/**"
