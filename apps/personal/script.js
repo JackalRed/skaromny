@@ -52,3 +52,27 @@ if (!reducedMotion && typeof Element.prototype.animate === "function") {
     sections.forEach(el => reveal.observe(el));
   }
 }
+
+
+// Tactile parallax is driven by scroll rather than a one-off entrance animation.
+// Scroll is passive/rAF-throttled, capped to hero height, and disabled for reduced motion.
+const personalHeader = document.querySelector(".site-head");
+const editorialCover = document.querySelector(".cover");
+let personalScheduled = false;
+function personalScrollFrame() {
+  const distance = Math.max(0, window.scrollY || 0);
+  personalHeader?.classList.toggle("is-scrolled", distance > 12);
+  if (!reducedMotion && editorialCover) {
+    const heroHeight = editorialCover.getBoundingClientRect().height || 650;
+    const y = Math.min(distance, heroHeight);
+    editorialCover.style.setProperty("--record-parallax", Math.round(y * .085) + "px");
+    editorialCover.style.setProperty("--name-parallax", -Math.round(y * .045) + "px");
+  }
+  personalScheduled = false;
+}
+window.addEventListener("scroll", () => {
+  if (personalScheduled) return;
+  personalScheduled = true;
+  requestAnimationFrame(personalScrollFrame);
+}, { passive:true });
+personalScrollFrame();
