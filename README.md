@@ -8,7 +8,7 @@ Two independent sites, one repository, three pages. All public-facing branding u
 | [hire.skaromny.com](https://hire.skaromny.com/) | `apps/hire/` | `dist/hire/` | Restrained professional profile / online CV |
 | [hire.skaromny.com/spotify-needle/](https://hire.skaromny.com/spotify-needle/) | `apps/hire/spotify-needle/` | `dist/hire/spotify-needle/` | Personal Spotify-focused case, not a product marketing page |
 
-**Status:** work-in-progress review branch. No production deployment is initiated by this branch.
+**Status:** Cloudflare Pages release candidate. Site assets are built and tested from GitHub; the live custom-domain deployment requires the two Pages projects to be connected by the owner. See [CLOUDFLARE_RELEASE.md](CLOUDFLARE_RELEASE.md) for the exact dashboard steps.
 
 ## Creative intention
 
@@ -66,7 +66,7 @@ The build copies authentic app media into `dist/hire/assets/` and one screenshot
 
 Never fabricate user metrics, employment dates or endorsements. Exact numeric statements need owner approval before publishing. No generated fake face, fake Needle interface or simulated product video is included.
 
-## Deployment plan (not executed)
+## Cloudflare Pages deployment
 
 **One repository, two separate static publishing targets.** Recommended: two Cloudflare Pages projects linked to the same repo and the same protected production branch, with identical build command `npm run build` but different output directories:
 
@@ -75,7 +75,7 @@ Never fabricate user metrics, employment dates or endorsements. Exact numeric st
 | personal | `npm run build` | `dist/personal` | `skaromny.com` |
 | professional | `npm run build` | `dist/hire` | `hire.skaromny.com` |
 
-The root `CNAME` and root `index.html` from the previous site are deliberately **not modified in this branch**; they remain the current GitHub Pages publication source until a migration is explicitly approved. On publication, move `hire.skaromny.com` DNS away from GitHub Pages to the chosen new deployment and test HTTPS/redirects. Avoid pointing one domain at both providers. The generated per-site CNAME files are inert until each output is deployed.
+The root `CNAME` and root `index.html` from the old website are deliberately **left untouched** until Cloudflare is attached and tested, preserving the legacy GitHub Pages host during cutover. Follow [CLOUDFLARE_RELEASE.md](CLOUDFLARE_RELEASE.md) to deploy both sites on their temporary pages.dev URLs before switching domain DNS. The generated per-site CNAME files do not configure Cloudflare automatically; use Pages → Custom domains.
 
 ## Review gates
 
@@ -85,4 +85,4 @@ GitHub Actions checks `npm run build`, local media/links, JS syntax, viewport ov
 - Personal portrait: add authentic, owner-approved imagery for a final art-directed version.
 - Published CV: only expose a PDF when the final CV is available and verified.
 - Review public metrics and employer details.
-- Set up two DNS / Pages projects only after design approval.
+- Create two Cloudflare Pages projects and review them on temporary pages.dev URLs before custom domain cutover. Keep the old DNS records saved for rollback.
