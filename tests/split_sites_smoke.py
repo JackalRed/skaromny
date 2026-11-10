@@ -181,7 +181,11 @@ def main():
                         assert "Smart CAPEX" in page.locator(".case-stories").inner_text()
                         assert "7M" in page.locator(".case-stories").inner_text()
                         assert "€7M" in page.locator(".case-stories").inner_text()
-                        assert "12-month traffic forecasts" in page.locator(".case-stories").inner_text()
+                        smart_capex = page.locator(".case-story").last
+                        smart_capex.locator("summary").click()
+                        assert "12-month traffic forecasts" in smart_capex.inner_text(), (
+                            "Smart CAPEX detail was not exposed when expanded"
+                        )
                         assert "2.5" in page.locator(".numbers").inner_text()
                         assert page.locator(".site-header").evaluate(
                             "(el) => getComputedStyle(el).backdropFilter !== 'none'"
