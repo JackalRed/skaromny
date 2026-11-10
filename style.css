@@ -37,7 +37,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .section-heading { margin: 34px 0 57px; font-family: var(--display); font-size: clamp(58px, 8.4vw, 138px); line-height: .97; letter-spacing: -.06em; font-weight: 600; }
 .section-heading em, .about-body h2 em, .footer > .wrap > p em { font-family: var(--display); font-style: normal; font-weight: 500; letter-spacing: -.07em; }
 .section-top, .feature-meta, .work-entry-header, .footer-top { display: flex; justify-content: space-between; gap: 22px; }
-.text-link { display: inline-flex; align-items: center; gap: 26px; padding: 10px 0 8px; border-bottom: 1px solid currentColor; font-size: 14px; font-weight: 700; }
+.text-link { display: inline-flex; align-items: center; gap: 26px; padding: 14px 0 14px; border-bottom: 1px solid currentColor; font-size: 14px; font-weight: 700; }
 .text-link span, .contact-link span, .bright-link span { transition: transform 160ms var(--ease-out); }
 @media (hover:hover) and (pointer:fine) {
   .text-link:hover span, .contact-link:hover span, .bright-link:hover span { transform: translate(3px, -3px); }
@@ -45,14 +45,14 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 /* Navigation */
 .site-header { position: relative; z-index: 10; border-bottom: 1px solid var(--line); }
 .site-header-inner { min-height: 81px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-.brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.brand { display: inline-flex; align-items: center; gap: 12px; flex-shrink: 0; min-height: 44px; }
 .brand-symbol { display: grid; place-content: center; grid-auto-flow: column; width: 39px; height: 39px; background: var(--ink); color: var(--paper); font-family: var(--display); font-weight: 700; letter-spacing: -.07em; font-size: 17px; }
 .brand-symbol > span { color: var(--acid); padding-inline: 1px; }
 .brand-name { font-weight: 700; font-size: 14px; letter-spacing: -.02em; }
 .top-nav { display: flex; gap: clamp(16px, 3.5vw, 58px); }
 .top-nav a, .contact-link { font-size: 13px; font-weight: 600; }
 .top-nav a { color: var(--secondary); transition: color 160ms ease; }
-.contact-link { border-bottom: 1px solid currentColor; padding-bottom: 3px; display: inline-flex; gap: 16px; align-items: center; white-space: nowrap; }
+.contact-link { border-bottom: 1px solid currentColor; padding: 12px 0; display: inline-flex; gap: 16px; align-items: center; white-space: nowrap; }
 @media (hover:hover) and (pointer:fine) { .top-nav a:hover { color: var(--ink); } }
 /* Hero */
 .hero { overflow: hidden; }
@@ -104,7 +104,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .problem-result { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; padding: 28px 0 22px; margin-top: auto; }
 .problem-result > div { border-top: 1px solid rgba(22,25,21,.35); padding-top: 12px; }
 .problem-result > div p { max-width: 235px; font-size: 13px; line-height: 1.5; margin: 12px 0 0; }
-.bright-link { display: inline-flex; justify-content: space-between; align-items: center; gap: 55px; padding: 14px 0 6px; border-bottom: 1px solid var(--ink); font-size: 13px; font-weight: 700; }
+.bright-link { display: inline-flex; justify-content: space-between; align-items: center; gap: 55px; padding: 14px 0 16px; border-bottom: 1px solid var(--ink); font-size: 13px; font-weight: 700; }
 .needle-demo { background: #1b211c; color: #f1f4ea; display: flex; min-width: 0; flex-direction: column; }
 .demo-header { min-height: 64px; display: flex; align-items: center; gap: 11px; border-bottom: 1px solid rgba(255,255,255,.14); padding: 0 32px; }
 .demo-header > span:last-child { margin-left: auto; color: #9baba0; }
@@ -143,7 +143,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .thinking-row > span { font-family: var(--mono); font-size: 12px; }
 .thinking-row > span:last-child { font-size: 18px; }
 .thinking-row h3 { margin: 0 0 11px; font-family: var(--display); font-size: clamp(24px,2.3vw,36px); letter-spacing: -.05em; font-weight: 500; }
-.thinking-row p { color: #4c544a; max-width: 450px; font-size: 14px; line-height: 1.65; margin: 0; }
+.thinking-row p { color: #343c34; max-width: 450px; font-size: 14px; line-height: 1.65; margin: 0; }
 /* About */
 .about { background: var(--dark); color: var(--light-text); }
 .about-grid { display: grid; grid-template-columns: .47fr 1fr; gap: clamp(45px,10vw,170px); }
@@ -157,7 +157,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #648600; outline-offs
 .footer > .wrap > p { margin: clamp(60px,7vw,125px) 0 clamp(80px,9vw,145px); font-family: var(--display); font-weight: 600; font-size: clamp(58px,10.5vw,170px); letter-spacing: -.095em; line-height: .94; }
 .footer-bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 25px; border-top: 1px solid rgba(22,25,21,.46); padding-top: 18px; }
 .footer-bottom > div { display: flex; gap: 24px; flex-wrap: wrap; }
-.footer-bottom a { border-bottom: 1px solid transparent; }
+.footer-bottom a { display: inline-flex; align-items: center; min-height: 44px; border-bottom: 1px solid transparent; }
 @media (hover:hover) and (pointer:fine) { .footer-bottom a:hover { border-color: currentColor; } }
 /* Tablet */
 @media (max-width: 1140px) {
