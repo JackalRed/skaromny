@@ -39,15 +39,15 @@ jobs:
         shell: bash
         run: |
           git clone --depth=1 https://github.com/Leonxlnx/taste-skill.git /tmp/taste-skill
-          find /tmp/taste-skill -name lint.mjs -o -name inspect.mjs
+          find /tmp/taste-skill -name copy-lint.mjs -o -name consistency.mjs
       - name: Taste source lint
         continue-on-error: true
         shell: bash
         run: |
           set +e
-          LINT="$(find /tmp/taste-skill -name lint.mjs | head -1)"
+          LINT="$(find /tmp/taste-skill -name copy-lint.mjs | head -1)"
           if [ -z "$LINT" ]; then echo "Taste lint unavailable"; exit 0; fi
-          node "$LINT" . > artifacts/design-audit/taste-lint.txt 2>&1
+          node "$LINT" index.html --kind software > artifacts/design-audit/taste-lint.txt 2>&1
           status=$?
           cat artifacts/design-audit/taste-lint.txt
           echo "taste_lint_exit=$status"
@@ -57,12 +57,12 @@ jobs:
         shell: bash
         run: |
           set +e
-          INSPECT="$(find /tmp/taste-skill -name inspect.mjs | head -1)"
+          INSPECT="$(find /tmp/taste-skill -name consistency.mjs | head -1)"
           if [ -z "$INSPECT" ]; then echo "Taste inspector unavailable"; exit 0; fi
           python3 -m http.server 4173 >/tmp/portfolio-http.log 2>&1 &
           sleep 3
           export CHROME_PATH="$(command -v google-chrome || command -v chromium || true)"
-          node "$INSPECT" http://127.0.0.1:4173 --out .taste-skill/inspect > artifacts/design-audit/taste-inspect.txt 2>&1
+          node "$INSPECT" http://127.0.0.1:4173 --page software --quick --out .taste-skill/inspect > artifacts/design-audit/taste-inspect.txt 2>&1
           status=$?
           cat artifacts/design-audit/taste-inspect.txt
           echo "taste_inspect_exit=$status"
