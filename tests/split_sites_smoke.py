@@ -109,7 +109,7 @@ def main():
 
             hpage = browser.new_page()
             hpage.goto(hire, wait_until="domcontentloaded")
-            link = hpage.get_by_role("link", name="Read the Spotify-focused story")
+            link = hpage.locator('a[href="/spotify-needle/"]')
             assert link.count() == 1
             link.click()
             hpage.wait_for_url("**/spotify-needle/")
