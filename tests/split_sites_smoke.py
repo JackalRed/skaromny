@@ -117,7 +117,43 @@ def main():
                             timeout=10000,
                         )
                     page.screenshot(path=str(OUT / f"{label}-{width}.png"), full_page=True)
-                    print(f"PASS {label:15} {width}px (render, links, images, script, overflow)", flush=True)
+                    # Sticky nav must remain visible during scrolling; this would
+                    # catch a theme that looks good at the top but loses its CTA.
+                    sticky_headers = {
+                        "personal": ".site-head",
+                        "hire": ".site-header",
+                        "spotify-needle": ".case-header",
+                    }
+                    if label in sticky_headers:
+                        header = page.locator(sticky_headers[label])
+                        position = header.evaluate("(el) => getComputedStyle(el).position")
+                        assert position == "sticky", f"{label}/{width}: header is not sticky: {position}"
+                        page.evaluate("window.scrollTo({top: 820, behavior: 'instant'})")
+                        page.wait_for_timeout(200)
+                        rect_top = header.evaluate("(el) => el.getBoundingClientRect().top")
+                        assert abs(rect_top) <= 2, f"{label}/{width}: sticky header jumped: {rect_top}"
+                        assert header.evaluate("(el) => el.classList.contains('is-scrolled')"), (
+                            f"{label}/{width}: sticky header did not react to scroll; did JS load?"
+                        )
+                    if label == "hire":
+                        assert page.locator('.header-actions .download-link').count() == 1
+                        assert page.locator('.header-actions .contact-short').count() == 1
+                        title_size = page.locator(".intro h1").evaluate(
+                            "(el) => parseFloat(getComputedStyle(el).fontSize)"
+                        )
+                        min_size = 105 if width >= 1200 else 65 if width >= 700 else 48
+                        assert title_size >= min_size, f"Hire hero too small at {width}: {title_size}px"
+                        assert page.locator(".career-row").count() == 4, "Agency roles should be condensed"
+                        assert page.locator(".case-story").count() == 4, "Expected two Vodafone cases"
+                        assert "Smart CAPEX" in page.locator(".case-stories").inner_text()
+                        assert "7M" in page.locator(".case-stories").inner_text()
+                        assert page.locator(".site-header").evaluate(
+                            "(el) => getComputedStyle(el).backdropFilter !== 'none'"
+                        ), "Sticky header must have frosted-glass treatment"
+                        assert page.locator(".reading-progress span").evaluate(
+                            "(el) => getComputedStyle(el).transform !== 'matrix(0, 0, 0, 0, 0, 0)'"
+                        ), "Reading progress bar did not initialize"
+                    print(f"PASS {label:15} {width}px (render, animation JS, sticky nav, content, overflow)", flush=True)
 
                     if width == 390:
                         page.keyboard.press("Tab")
