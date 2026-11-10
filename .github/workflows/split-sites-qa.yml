@@ -12,6 +12,7 @@ on:
     branches:
       - redesign/personal-hire-split
       - main
+      - feature/v4-proof-and-motion
   workflow_dispatch:
 
 permissions:
@@ -31,11 +32,14 @@ jobs:
         run: npm run check
       - name: Validate JavaScript
         run: |
+          node --check scripts/create-cv.mjs
           node --check apps/personal/script.js
           node --check apps/hire/script.js
           node --check apps/hire/spotify-needle/script.js
-      - name: Install Playwright
-        run: python -m pip install --disable-pip-version-check playwright
+      - name: Install browser and PDF validation tools
+        run: python -m pip install --disable-pip-version-check playwright pymupdf
+      - name: Validate and render 2-page CV PDF
+        run: python tests/check_cv_pdf.py
       - name: Browser test at 320 / 390 / 768 / 1440
         run: python tests/split_sites_smoke.py
       - uses: actions/upload-artifact@v4
