@@ -45,7 +45,7 @@ for (const pagePath of pages.filter(x => !x.includes("/yope/"))) {
   assert(built.includes('background:' ) || built.includes('background-'), "Embedded CSS content missing: " + pagePath);
 }
 assert(readFileSync(resolve(root, "dist/personal/CNAME"), "utf8").trim() === "skaromny.com");
-assert(readFileSync(resolve(root, "dist/hire/yope/index.html"), "utf8").includes("Understand group health."), "Yope thesis / group-health page missing");
+assert(readFileSync(resolve(root, "dist/hire/yope/index.html"), "utf8").includes("What makes a group last?"), "Yope group outcome framework missing");
 const cvPath = resolve(root, "dist/hire/assets/Eugen_Skaromny_CV.pdf");
 const cvBytes = readFileSync(cvPath);
 assert(cvBytes.subarray(0, 8).toString("ascii") === "%PDF-1.4", "Missing or invalid CV PDF header");
