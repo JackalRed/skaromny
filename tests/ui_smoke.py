@@ -49,6 +49,12 @@ try:
                 scroll: document.documentElement.scrollWidth,
                 viewport: document.documentElement.clientWidth
             })""")
+            if dimensions["scroll"] > dimensions["viewport"] + 2:
+                offending = page.evaluate("""() => Array.from(document.querySelectorAll('body *'))
+                    .filter(el => {const r = el.getBoundingClientRect(); return r.right > document.documentElement.clientWidth + 2 && getComputedStyle(el).display !== 'none'})
+                    .map(el => ({tag:el.tagName, class:el.className, text:el.textContent?.trim().slice(0,60), right:Math.round(el.getBoundingClientRect().right)}))
+                    .slice(0,15)""")
+                print(f"OFFENDING {width}: {offending}", flush=True)
             assert dimensions["scroll"] <= dimensions["viewport"] + 2, f"Horizontal overflow at {width}: {dimensions}"
             assert page.locator("a[href='https://github.com/JackalRed/Music-box']").count() == 0, "Private GitHub repo exposed"
 
